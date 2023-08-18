@@ -1,0 +1,80 @@
+http:
+  routers:
+    searxng:
+      entryPoints:
+        - https
+      rule: 'Host(`search.sawyer.services`)'
+      service: http://homelab:8080
+
+    portainer:
+      entryPoints:
+        - https
+      rule: 'Host(`portainer.sawyer.services`)'
+      service: http://homelab:8000
+      middlewares:
+        - "auth"  
+
+  ## SERVICES ##
+  services:
+    # Homeassistant service - Remove if not used
+    homeassistant:
+      loadBalancer:
+        servers:
+          - url: http://192.168.60.5:8123/
+
+  ## MIDDLEWARES ##
+  middlewares:
+    # Authelia guard
+    auth:
+      forwardauth:
+        address: http://127.0.0.1:9091/api/verify?rd=https://auth.sawyer.services/
+        trustForwardHeader: true
+        authResponseHeaders:
+          - Remote-User
+          - Remote-Groups
+          - Remote-Name
+          - Remote-Email
+  
+    # Authelia basic auth guard
+    auth-basic:
+      forwardauth:
+        address: http://auth:9091/api/verify?auth=basic
+        trustForwardHeader: true
+        authResponseHeaders:
+          - Remote-User
+          - Remote-Groups
+          - Remote-Name
+          - Remote-Email
+
+    # Security headers
+    securityHeaders:
+      headers:
+        customResponseHeaders:
+          X-Robots-Tag: "none,noarchive,nosnippet,notranslate,noimageindex"
+          X-Forwarded-Proto: "https"
+          server: ""
+        customRequestHeaders:
+          X-Forwarded-Proto: "https"
+        sslProxyHeaders:
+          X-Forwarded-Proto: "https"
+        referrerPolicy: "same-origin"
+        hostsProxyHeaders:
+          - "X-Forwarded-Host"
+        contentTypeNosniff: true
+        browserXssFilter: true
+        forceSTSHeader: true
+        stsIncludeSubdomains: true
+        stsSeconds: 63072000
+        stsPreload: true
+ 
+tls:
+  options:
+    default:
+      minVersion: VersionTLS12
+      cipherSuites:
+        - TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256
+        - TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        - TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384
+        - TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        - TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305
+        - TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305

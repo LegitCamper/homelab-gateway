@@ -14,33 +14,33 @@
         name: traefik
         image: traefik:v2.2
         restart_policy: always
+        command: --api.insecure=true --providers.docker
         networks:
           - name: web
         exposed_ports:
           - 80
           - 443
+          - 8080
         volumes_from:
-          # - /var/run/docker.sock:/var/run/docker.sock 
-          - ~/.ansible/pull/{{ ansible_facts["nodename"] }}/traefik.toml:/traefik.toml 
-          - ~/.ansible/pull/{{ ansible_facts["nodename"] }}/traefik_dynamic.toml:/traefik_dynamic.toml 
-          - ~/.ansible/pull/{{ ansible_facts["nodename"] }}/acme.json:/acme.json 
+          - ~/.ansible/pull/{{ ansible_facts["nodename"] }}/traefik/traefik.yml:/traefik.yml
+          - ~/.ansible/pull/{{ ansible_facts["nodename"] }}/traefik/fileConfig.yml:/fileConfig.yml
 
-    - name: authelia container
-      community.docker.docker_container:
-        name: authelia
-        image: authelia/authelia
-        restart_policy: always
-        networks:
-          - name: web
-        exposed_ports:
-          - 80
-          - 443
-        environment:
-          - TZ=America/Denver
-        volumes_from:
-          - ~/.ansible/pull/{{ ansible_facts["nodename"] }}/traefik.toml:/traefik.toml 
-          - ~/.ansible/pull/{{ ansible_facts["nodename"] }}/traefik_dynamic.toml:/traefik_dynamic.toml 
-          - ~/.ansible/pull/{{ ansible_facts["nodename"] }}/acme.json:/acme.json 
+    # - name: authelia container
+    #   community.docker.docker_container:
+    #     name: authelia
+    #     image: authelia/authelia
+    #     restart_policy: always
+    #     networks:
+    #       - name: web
+    #     exposed_ports:
+    #       - 80
+    #       - 443
+    #     environment:
+    #       - TZ=America/Denver
+    #     volumes_from:
+    #       - ~/.ansible/pull/{{ ansible_facts["nodename"] }}/traefik.toml:/traefik.toml 
+    #       - ~/.ansible/pull/{{ ansible_facts["nodename"] }}/traefik_dynamic.toml:/traefik_dynamic.toml 
+    #       - ~/.ansible/pull/{{ ansible_facts["nodename"] }}/acme.json:/acme.json 
 
     - name: installs tailscale
       ansible.builtin.shell:
