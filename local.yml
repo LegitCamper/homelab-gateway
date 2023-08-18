@@ -21,9 +21,9 @@
           - 443
         volumes_from:
           # - /var/run/docker.sock:/var/run/docker.sock 
-          - ~/.ansible/pull/{{ ansible_facts["ansible_hostname"] }}/traefik.toml:/traefik.toml 
-          - ~/.ansible/pull/{{ ansible_facts["ansible_hostname"] }}/traefik_dynamic.toml:/traefik_dynamic.toml 
-          - ~/.ansible/pull/{{ ansible_facts["ansible_hostname"] }}/acme.json:/acme.json 
+          - ~/.ansible/pull/{{ ansible_facts["nodename"] }}/traefik.toml:/traefik.toml 
+          - ~/.ansible/pull/{{ ansible_facts["nodename"] }}/traefik_dynamic.toml:/traefik_dynamic.toml 
+          - ~/.ansible/pull/{{ ansible_facts["nodename"] }}/acme.json:/acme.json 
 
     - name: authelia container
       community.docker.docker_container:
@@ -38,9 +38,9 @@
         environment:
           - TZ=America/Denver
         volumes_from:
-          - ~/.ansible/pull/{{ ansible_facts["ansible_hostname"] }}/traefik.toml:/traefik.toml 
-          - ~/.ansible/pull/{{ ansible_facts["ansible_hostname"] }}/traefik_dynamic.toml:/traefik_dynamic.toml 
-          - ~/.ansible/pull/{{ ansible_facts["ansible_hostname"] }}/acme.json:/acme.json 
+          - ~/.ansible/pull/{{ ansible_facts["nodename"] }}/traefik.toml:/traefik.toml 
+          - ~/.ansible/pull/{{ ansible_facts["nodename"] }}/traefik_dynamic.toml:/traefik_dynamic.toml 
+          - ~/.ansible/pull/{{ ansible_facts["nodename"] }}/acme.json:/acme.json 
 
     - name: installs tailscale
       ansible.builtin.shell:
