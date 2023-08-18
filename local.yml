@@ -11,10 +11,6 @@
       # systemd_timer_OnCalendar: "*:0/30"
 
     - stiliajohny.ansible_role_ansible_pull
-      project_link: "github.com/LegitCamper/homelab-proxy.git"
-      inventory: "local"
-      playbook: "local.yml"
-      logfile: "/var/log/ansible/ansible.log"
 
   tasks:
     - name: install packages
@@ -59,5 +55,12 @@
       ansible.builtin.shell:
         cmd: |
           curl -fsSL https://tailscale.com/install.sh | sh
+
+    - name: continuos deployment
+      stiliajohny.ansible_role_ansible_pull:
+        project_link: "github.com/LegitCamper/homelab-proxy.git"
+        inventory: "local"
+        playbook: "local.yml"
+        logfile: "/var/log/ansible/ansible.log"
 
 
