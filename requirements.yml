@@ -1,6 +1,7 @@
 ---
 roles:
-  - name: stiliajohny.ansible_role_ansible_pull
-
+  - name: dwsr.ansible_pull
+  - name: hifis.unattended_upgrades
+   
 collections:
   - name: community.docker
