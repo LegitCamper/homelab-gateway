@@ -15,7 +15,6 @@
         image: traefik:v2.2
         restart_policy: always
         recreate: true
-        command: --api.insecure=true --providers.docker
         # networks:
           # - name: web
         exposed_ports:
