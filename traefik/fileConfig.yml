@@ -1,7 +1,7 @@
 http:
   routers:
     to-traefik:
-      rule = "Host(`traefik.sawyer.services`) && PathPrefix(`/api`, `/dashboard`)"
+      rule: "Host(`traefik.sawyer.services`) && PathPrefix(`/api`, `/dashboard`)"
       service: traefik
     to-searxng:
       rule: 'Host(`searxng.sawyer.services`)'
