@@ -4,11 +4,11 @@
   become: true
 
   roles:
-    - role: hifis.unattended_upgrades
-      unattended_origins_patterns:
-        - origin=Ubuntu,archive=${distro_codename}-security
-        - origin=Ubuntu,a=${distro_codename}-updates
-    systemd_timer_OnCalendar: "*:0/30"
+    # - role: hifis.unattended_upgrades
+      # unattended_origins_patterns:
+        # - origin=Ubuntu,archive=${distro_codename}-security
+        # - origin=Ubuntu,a=${distro_codename}-updates
+      # systemd_timer_OnCalendar: "*:0/30"
 
     - role: stiliajohny.ansible_role_ansible_pull
       project_link: "github.com/LegitCamper/homelab-proxy.git"
