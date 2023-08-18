@@ -50,7 +50,7 @@ entryPoints:
     http:
       tls:
         # Generate a wildcard domain certificate
-        certResolver: letsencrypt
+        # certResolver: letsencrypt
         domains:
           - main: sawyer.services
             sans:
