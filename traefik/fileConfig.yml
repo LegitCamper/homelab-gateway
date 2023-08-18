@@ -4,29 +4,38 @@ http:
       entryPoints:
         - https
       rule: 'Host(`search.sawyer.services`)'
-      service: homelab:8080
+      service: searxng
     dashy:
       entryPoints:
         - https
       rule: 'Host(`dashy.sawyer.services`)'
-      service: homelab:10000
+      service: dashy
       # middlewares:
         # - "auth"  
     portainer:
       entryPoints:
         - https
       rule: 'Host(`portainer.sawyer.services`)'
-      service: homelab:8000
+      service: portainer
       middlewares:
         - "auth"  
 
   ## SERVICES ##
   services:
-    # Homeassistant service - Remove if not used
-    homeassistant:
+    searxng:
       loadBalancer:
         servers:
-          - url: http://192.168.60.5:8123/
+          - url: http://homelab:9000
+  dashy:
+    searxng:
+      loadBalancer:
+        servers:
+          - url: http://homelab:10000
+  portainer:
+    searxng:
+      loadBalancer:
+        servers:
+          - url: http://homelab:8000
 
   ## MIDDLEWARES ##
   middlewares:
