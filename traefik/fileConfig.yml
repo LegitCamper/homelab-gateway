@@ -26,13 +26,11 @@ http:
       loadBalancer:
         servers:
           - url: http://homelab:9000
-  dashy:
-    searxng:
+    dashy:
       loadBalancer:
         servers:
           - url: http://homelab:10000
-  portainer:
-    searxng:
+    portainer:
       loadBalancer:
         servers:
           - url: http://homelab:8000
