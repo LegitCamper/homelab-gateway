@@ -1,19 +1,14 @@
 http:
   routers:
-    traefik:
+    to-traefik:
       rule = "Host(`traefik.sawyer.services`) && PathPrefix(`/api`, `/dashboard`)"
       service: traefik
-    searxng:
+    to-searxng:
       rule: 'Host(`searxng.sawyer.services`)'
       service: searxng
-    dashy:
+    to-dashy:
       rule: 'Host(`dashy.sawyer.services`)'
       service: dashy
-    portainer:
-      entryPoints:
-        - https
-      rule: 'Host(`portainer.sawyer.services`)'
-      service: portainer
 
   services:
     traefik:
@@ -27,8 +22,4 @@ http:
     dashy:
       loadBalancer:
         servers:
-          - url: http://homelab:10000
-    portainer:
-      loadBalancer:
-        servers:
-          - url: http://homelab:8000
+         - url: http://homelab:10000
