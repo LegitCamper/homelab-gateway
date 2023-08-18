@@ -4,13 +4,13 @@ http:
       entryPoints:
         - https
       rule: 'Host(`search.sawyer.services`)'
-      service: http://homelab:8080
+      service: homelab:8080
 
     portainer:
       entryPoints:
         - https
       rule: 'Host(`portainer.sawyer.services`)'
-      service: http://homelab:8000
+      service: homelab:8000
       middlewares:
         - "auth"  
 
