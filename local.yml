@@ -4,11 +4,6 @@
   become: true
 
   tasks:
-    - name: install packages
-      ansible.builtin.apt:
-        pkg:
-          - apache2-utils
-
     - name: traefik container
       community.docker.docker_container:
         name: traefik

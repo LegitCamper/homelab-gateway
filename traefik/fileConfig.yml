@@ -1,7 +1,7 @@
 http:
   routers:
     to-traefik:
-      rule: "Host(`traefik.sawyer.services`) && PathPrefix(`/api`, `/dashboard`)"
+      rule: 'Host(`traefik.sawyer.services`)'
       service: traefik
     to-searxng:
       rule: 'Host(`searxng.sawyer.services`)'
@@ -22,4 +22,4 @@ http:
     dashy:
       loadBalancer:
         servers:
-         - url: http://homelab:10000
+           - url: http://homelab:10000
