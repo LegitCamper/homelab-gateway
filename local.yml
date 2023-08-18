@@ -15,8 +15,8 @@
         image: traefik:v2.2
         restart_policy: always
         command: --api.insecure=true --providers.docker
-        networks:
-          - name: web
+        # networks:
+          # - name: web
         exposed_ports:
           - 80
           - 443
