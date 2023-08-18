@@ -1,9 +1,9 @@
 http:
   routers:
     searxng:
-      entryPoints:
-        - https
-      rule: 'Host(`search.sawyer.services`)'
+      # entryPoints:
+        # - https
+      rule: 'Host(`searxng.sawyer.services`)'
       service: searxng
     dashy:
       entryPoints:
@@ -20,7 +20,6 @@ http:
       middlewares:
         - "auth"  
 
-  ## SERVICES ##
   services:
     searxng:
       loadBalancer:
@@ -35,7 +34,6 @@ http:
         servers:
           - url: http://homelab:8000
 
-  ## MIDDLEWARES ##
   middlewares:
     # Authelia guard
     auth:
