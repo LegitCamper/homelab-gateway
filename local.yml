@@ -4,6 +4,10 @@
   become: true
 
   tasks:
+    - name: Get hostname
+      shell: echo $HOSTNAME
+      register: result
+
     - name: install packages
       ansible.builtin.apt:
         pkg:
@@ -21,9 +25,9 @@
           - 443
         volumes_from:
           # - /var/run/docker.sock:/var/run/docker.sock 
-          - $PWD/traefik.toml:/traefik.toml 
-          - $PWD/traefik_dynamic.toml:/traefik_dynamic.toml 
-          - $PWD/acme.json:/acme.json 
+          - ~/.ansible/pull/{{result.stdout}}/traefik.toml:/traefik.toml 
+          - ~/.ansible/pull/{{result.stdout}}/traefik_dynamic.toml:/traefik_dynamic.toml 
+          - ~/.ansible/pull/{{result.stdout}}/acme.json:/acme.json 
 
     - name: authelia container
       community.docker.docker_container:
@@ -38,9 +42,9 @@
         environment:
           - TZ=America/Denver
         volumes_from:
-          - $PWD/traefik.toml:/traefik.toml 
-          - $PWD/traefik_dynamic.toml:/traefik_dynamic.toml 
-          - $PWD/acme.json:/acme.json 
+          - ~/.ansible/pull/{{result.stdout}}/traefik.toml:/traefik.toml 
+          - ~/.ansible/pull/{{result.stdout}}/traefik_dynamic.toml:/traefik_dynamic.toml 
+          - ~/.ansible/pull/{{result.stdout}}/acme.json:/acme.json 
 
     - name: installs tailscale
       ansible.builtin.shell:
