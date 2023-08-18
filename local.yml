@@ -13,7 +13,7 @@
       community.docker.docker_container:
         name: traefik
         image: traefik:v2.2
-        restart_poicy: always
+        restart_policy: always
         networks:
           - name: web
         exposed_ports:
@@ -29,7 +29,7 @@
       community.docker.docker_container:
         name: authelia
         image: authelia/authelia
-        restart_poicy: always
+        restart_policy: always
         networks:
           - name: web
         exposed_ports:
