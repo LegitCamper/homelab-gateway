@@ -6,8 +6,8 @@
   roles:
     - role: hifis.unattended_upgrades
       unattended_origins_patterns:
-      - 'origin=Ubuntu,archive=${distro_codename}-security'
-      - 'o=Ubuntu,a=${distro_codename}-updates'
+      - origin=Ubuntu,archive=${distro_codename}-security
+      - origin=Ubuntu,a=${distro_codename}-updates
     systemd_timer_OnCalendar: "*:0/30"
 
     - role: stiliajohny.ansible_role_ansible_pull
@@ -16,7 +16,7 @@
       playbook: "local.yml"
       logfile: "/var/log/ansible/ansible.log"
 
- tasks:
+  tasks:
     - name: install packages
       ansible.builtin.apt:
         pkg:
