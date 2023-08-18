@@ -1,0 +1,63 @@
+--- 
+- hosts: localhost
+  connection: local
+  become: true
+
+  roles:
+    - role: hifis.unattended_upgrades
+      unattended_origins_patterns:
+      - 'origin=Ubuntu,archive=${distro_codename}-security'
+      - 'o=Ubuntu,a=${distro_codename}-updates'
+    systemd_timer_OnCalendar: "*:0/30"
+
+    - role: stiliajohny.ansible_role_ansible_pull
+      project_link: "github.com/LegitCamper/homelab-proxy.git"
+      inventory: "local"
+      playbook: "local.yml"
+      logfile: "/var/log/ansible/ansible.log"
+
+ tasks:
+    - name: install packages
+      ansible.builtin.apt:
+        pkg:
+          - apache2-utils
+
+    - name: traefik container
+      community.docker.docker_container:
+        name: traefik
+        image: traefik:v2.2
+        restart_poicy: always
+        networks:
+          - name: web
+        exposed_ports:
+          - 80
+          - 443
+        volumes_from:
+          # - /var/run/docker.sock:/var/run/docker.sock 
+          - $PWD/traefik.toml:/traefik.toml 
+          - $PWD/traefik_dynamic.toml:/traefik_dynamic.toml 
+          - $PWD/acme.json:/acme.json 
+
+    - name: authelia container
+      community.docker.docker_container:
+        name: authelia
+        image: authelia/authelia
+        restart_poicy: always
+        networks:
+          - name: web
+        exposed_ports:
+          - 80
+          - 443
+        environment:
+          - TZ=America/Denver
+        volumes_from:
+          - $PWD/traefik.toml:/traefik.toml 
+          - $PWD/traefik_dynamic.toml:/traefik_dynamic.toml 
+          - $PWD/acme.json:/acme.json 
+
+    - name: installs tailscale
+      ansible.builtin.shell:
+        cmd: |
+          curl -fsSL https://tailscale.com/install.sh | sh
+
+
