@@ -14,6 +14,7 @@
         name: traefik
         image: traefik:v2.2
         restart_policy: always
+        recreate: true
         command: --api.insecure=true --providers.docker
         # networks:
           # - name: web
@@ -22,8 +23,8 @@
           - 443
           - 8080
         volumes:
-          - ~/.ansible/pull/{{ ansible_facts["nodename"] }}/traefik/traefik.yml:/traefik.yml
-          - ~/.ansible/pull/{{ ansible_facts["nodename"] }}/traefik/fileConfig.yml:/fileConfig.yml
+          - ~/.ansible/pull/{{ ansible_facts["nodename"] }}/traefik/traefik.yml:/etc/traefik/traefik.yml
+          - ~/.ansible/pull/{{ ansible_facts["nodename"] }}/traefik/fileConfig.yml:/etc/traefik/fileConfig.yml
 
     # - name: authelia container
     #   community.docker.docker_container:
