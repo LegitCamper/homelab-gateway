@@ -74,16 +74,3 @@ api:
 # Log level INFO|DEBUG|ERROR
 log:
   level: INFO
-
-# Use letsencrypt to generate ssl serficiates
-certificatesResolvers:
-  letsencrypt:
-    acme:
-      email: SawyerBristol@gmail.com
-      storage: /etc/traefik/acme.json
-      dnsChallenge:
-        provider: cloudflare
-        # Used to make sure the dns challenge is propagated to the rights dns servers
-        resolvers:
-          - "1.1.1.1:53"
-          - "1.0.0.1:53"
