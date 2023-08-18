@@ -21,7 +21,7 @@
           - 80
           - 443
           - 8080
-        volumes_from:
+        volumes:
           - ~/.ansible/pull/{{ ansible_facts["nodename"] }}/traefik/traefik.yml:/traefik.yml
           - ~/.ansible/pull/{{ ansible_facts["nodename"] }}/traefik/fileConfig.yml:/fileConfig.yml
 
