@@ -10,7 +10,7 @@
         # - origin=Ubuntu,a=${distro_codename}-updates
       # systemd_timer_OnCalendar: "*:0/30"
 
-    - role: stiliajohny.ansible_role_ansible_pull
+    - stiliajohny.ansible_role_ansible_pull
       project_link: "github.com/LegitCamper/homelab-proxy.git"
       inventory: "local"
       playbook: "local.yml"
