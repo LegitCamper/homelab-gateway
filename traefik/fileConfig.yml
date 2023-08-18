@@ -10,8 +10,8 @@ http:
         - https
       rule: 'Host(`dashy.sawyer.services`)'
       service: homelab:10000
-      middlewares:
-        - "auth"  
+      # middlewares:
+        # - "auth"  
     portainer:
       entryPoints:
         - https
@@ -44,7 +44,7 @@ http:
     # Authelia basic auth guard
     auth-basic:
       forwardauth:
-        address: http://auth:9091/api/verify?auth=basic
+        address: http://127.0.0.1:9091/api/verify?auth=basic
         trustForwardHeader: true
         authResponseHeaders:
           - Remote-User
