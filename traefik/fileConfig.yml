@@ -5,7 +5,13 @@ http:
         - https
       rule: 'Host(`search.sawyer.services`)'
       service: homelab:8080
-
+    dashy:
+      entryPoints:
+        - https
+      rule: 'Host(`dashy.sawyer.services`)'
+      service: homelab:10000
+      middlewares:
+        - "auth"  
     portainer:
       entryPoints:
         - https
