@@ -14,6 +14,7 @@
     - role: dwsr.ansible_pull
       vars:
         ansible_pull_playbook: local.yml
+        ansible_pull_inventory: none.yml
         ansible_pull_repo_url: git@github.com:legitcamper/homelab-proxy.git
 
   tasks:
