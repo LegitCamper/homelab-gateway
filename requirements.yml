@@ -1,0 +1,6 @@
+---
+roles:
+  - name: stiliajohny.ansible_role_ansible_pull
+
+collections:
+  - name: community.docker
