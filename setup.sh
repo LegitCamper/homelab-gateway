@@ -1,6 +1,6 @@
 apt-get update
-apt-get upgrade 
-apt-get install -y ansible ansible-galaxy python3 python3-venv docker.io helix 
+apt-get upgrade -y 
+apt-get install -y ansible python3 python3-venv docker.io
 systemctl enable docker
 
 wget https://raw.githubusercontent.com/LegitCamper/homelab-proxy/main/requirements.yml 
