@@ -3,9 +3,9 @@ dashboard = true
 insecure = true
 
 [entryPoints]
-[entryPoints.web]
+[entryPoints.http]
 address = ":80"
-[entryPoints.websecure]
+[entryPoints.https]
 address = ":443"
 [entryPoints.minecraft]
 address = ":25526"

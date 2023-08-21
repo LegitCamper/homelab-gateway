@@ -14,6 +14,7 @@
           - 80
           - 443
           - 8080
+        network_mode: host
         volumes:
           - ~/.ansible/pull/{{ ansible_facts["nodename"] }}/traefik/traefik.toml:/etc/traefik/traefik.toml
           - ~/.ansible/pull/{{ ansible_facts["nodename"] }}/traefik/dynamic.toml:/etc/traefik/dynamic.toml
