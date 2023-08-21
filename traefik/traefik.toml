@@ -1,0 +1,28 @@
+[api]
+dashboard = true
+insecure = true
+
+[entryPoints]
+[entryPoints.web]
+address = ":80"
+[entryPoints.websecure]
+address = ":443"
+[entryPoints.minecraft]
+address = ":25526"
+
+[providers]
+[providers.file]
+directory = "/etc/traefik/"
+
+[serversTransport]
+insecureSkipVerify = true
+
+
+[certificatesResolvers.myresolver.acme]
+caServer = "https://acme-staging-v02.api.letsencrypt.org/directory"
+email = "sawyerbristol@gmail.com"
+storage = "acme.json"
+[certificatesResolvers.myresolver.acme.dnsChallenge]
+resolvers = ["1.1.1.1:53", "8.8.8.8:53"]
+[certificatesResolvers.myresolver.acme.httpChallenge]
+entryPoint = "web"

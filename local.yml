@@ -10,32 +10,13 @@
         image: traefik:v3.0
         restart_policy: always
         recreate: true
-        # networks:
-          # - name: web
         exposed_ports:
           - 80
           - 443
           - 8080
         volumes:
-          - ~/.ansible/pull/{{ ansible_facts["nodename"] }}/traefik/traefik.yml:/etc/traefik/traefik.yml
-          - ~/.ansible/pull/{{ ansible_facts["nodename"] }}/traefik/fileConfig.yml:/etc/traefik/fileConfig.yml
-
-    # - name: authelia container
-    #   community.docker.docker_container:
-    #     name: authelia
-    #     image: authelia/authelia
-    #     restart_policy: always
-    #     networks:
-    #       - name: web
-    #     exposed_ports:
-    #       - 80
-    #       - 443
-    #     environment:
-    #       - TZ=America/Denver
-    #     volumes_from:
-    #       - ~/.ansible/pull/{{ ansible_facts["nodename"] }}/traefik.toml:/traefik.toml 
-    #       - ~/.ansible/pull/{{ ansible_facts["nodename"] }}/traefik_dynamic.toml:/traefik_dynamic.toml 
-    #       - ~/.ansible/pull/{{ ansible_facts["nodename"] }}/acme.json:/acme.json 
+          - ~/.ansible/pull/{{ ansible_facts["nodename"] }}/traefik/traefik.toml:/etc/traefik/traefik.toml
+          - ~/.ansible/pull/{{ ansible_facts["nodename"] }}/traefik/dynamic.toml:/etc/traefik/dynamic.toml
 
     - name: installs tailscale
       ansible.builtin.shell:
