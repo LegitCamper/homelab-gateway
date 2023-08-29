@@ -1,7 +1,0 @@
----
-roles:
-  - name: dwsr.ansible_pull
-  - name: hifis.unattended_upgrades
-   
-collections:
-  - name: community.docker
