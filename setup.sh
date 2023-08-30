@@ -6,7 +6,7 @@ tailscale login
 tailscale up
 
 MYIP=$(ip addr show eth0 | grep "inet " | cut -d '/' -f1 | cut -d ' ' -f6 | head -n 1)
-HLIP=$(tailscale ip -4 homelab):8080
+HLIP=$(tailscale ip -4 homelab):80
 MYTSIP=$(tailscale ip -4)
 EXT=eth0
 INT=tailscale0
