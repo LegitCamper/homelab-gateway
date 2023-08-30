@@ -15,9 +15,6 @@ echo 1 >/proc/sys/net/ipv4/ip_forward
 echo "net.ipv4.ip_forward = 1" > /etc/sysctl.conf
 
 # basic firewall to force auth for domain
-#iptables -I INPUT -i $INT -j ACCEPT
-#iptables -I INPUT -i $EXT -p tcp -m string --string "Host: *.sawyer.services" --algo bm -j  ACCEPT
-#iptables -I INPUT -i $EXT -p udp -m string --string "Host: *.sawyer.services" --algo bm -j  ACCEPT
 iptables -A INPUT -i $EXT -p tcp -s $MYIP -P 22 -j REJECT --reject-with tcp-reset 
 
 # forward traffic to homelab
