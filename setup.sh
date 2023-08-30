@@ -1,6 +1,6 @@
 apt-get update
 apt-get upgrade -y 
-apt-get install iptables-persistent
+apt-get install -y iptables-persistent
 curl -fsSL https://tailscale.com/install.sh | sh
 tailscale login
 tailscale up
