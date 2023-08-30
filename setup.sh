@@ -14,9 +14,17 @@ INT=tailscale0
 echo 1 >/proc/sys/net/ipv4/ip_forward
 echo "net.ipv4.ip_forward = 1" > /etc/sysctl.conf
 
-iptables --append PREROUTING -i EXT --table nat --protocol tcp --dport 1:65535 -j DNAT --to-destination $HLIP
-iptables --append POSTROUTING -o INT --table nat --protocol tcp --dport 1:65535 -j SNAT --to-source $MYTSIP
-iptables --append PREROUTING -i EXT --table nat --protocol udp --dport 1:65535 -j DNAT --to-destination $HLIP
-iptables --append POSTROUTING -o INT --table nat --protocol udp --dport 1:65535 -j SNAT --to-source $MYTSIP
+# basic firewall to force auth for domain
+#iptables -I INPUT -p tcp -m string --string "Host: *.sawyer.services" --algo bm -j  ACCEPT
+#iptables -I INPUT -p udp -m string --string "Host: *.sawyer.services" --algo bm -j  ACCEPT
+#iptables -A INPUT -i tailscale0 -j ACCEPT
+#iptables -A INPUT -p tcp -i eth0 -j REJECT --reject-with tcp-reset 
 
+# forward traffic to homelab
+iptables --append PREROUTING -i EXT --table nat --protocol tcp --dport all -j DNAT --to-destination $HLIP
+iptables --append POSTROUTING -o INT --table nat --protocol tcp --dport all -j SNAT --to-source $MYTSIP
+iptables --append PREROUTING -i EXT --table nat --protocol udp --dport all -j DNAT --to-destination $HLIP
+iptables --append POSTROUTING -o INT --table nat --protocol udp --dport all -j SNAT --to-source $MYTSIP
+
+# make rules persistent
 sudo iptables-save > /etc/iptables/rules.v4
