@@ -17,14 +17,17 @@ address = ":80/udp"
 [entryPoints.tcp8080]
 address = ":8080"
 [entryPoints.udp8080]
+address = ":8080/udp"
 # HTTPS
 [entryPoints.tcp443]
 address = ":443"
 [entryPoints.udp443]
+address = ":443/udp"
 # DNS
 [entryPoints.tcp53]
 address = ":53"
 [entryPoints.udp53]
+address = ":53/udp"
 # MINECRAFT
 [entryPoints.tcp25565]
 address = ":25565"
