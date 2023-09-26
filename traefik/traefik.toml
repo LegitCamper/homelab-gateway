@@ -9,7 +9,6 @@ insecure = true
 # exposedByDefault = true
 
 # HTTP
-[entryPoints]
 [entryPoints.tcp80]
 address = ":80"
 [entryPoints.tcp.forwardedHeaders]
