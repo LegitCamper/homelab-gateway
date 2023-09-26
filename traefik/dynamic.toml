@@ -8,6 +8,9 @@ service = "dashy"
 [http.routers.to-searxng]
 rule = "Host(`searxng.sawyer.services`)"
 service = "searxng"
+[http.routers.to-minecraft]
+rule = "Host(`minecraft.sawyer.services`)"
+service = "minecraft"
 
 [http.services]
 [http.services.traefik.loadBalancer]
@@ -19,3 +22,6 @@ url = "http://homelab.dunker-arctic.ts.net:10000"
 [http.services.searxng.loadBalancer]
 [[http.services.searxng.loadBalancer.servers]]
 url = "https://homelab.dunker-arctic.ts.net:9000"
+[http.services.minecraft.loadBalancer]
+[[http.services.minecraft.loadBalancer.servers]]
+url = "https://homelab.dunker-arctic.ts.net:25565"
