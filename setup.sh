@@ -16,10 +16,10 @@ echo 1 >/proc/sys/net/ipv4/ip_forward
 echo "net.ipv4.ip_forward = 1" > /etc/sysctl.conf
 
 # forward traffic to homelab
-iptables -A PREROUTING -i EXT --table nat -p tcp --dport $PORTS -j DNAT --to-destination $HLIP
-iptables -A POSTROUTING -o INT --table nat -p tcp --dport $PORTS -j SNAT --to-source $MYTSIP
-iptables -A PREROUTING -i EXT --table nat -p udp --dport $PORTS -j DNAT --to-destination $HLIP
-iptables -A POSTROUTING -o INT --table nat -p udp --dport $PORTS -j SNAT --to-source $MYTSIP
+iptables -t nat -A PREROUTING -i EXT -p tcp --dport $PORTS -j DNAT --to-destination $HLIP
+iptables -t nat -A POSTROUTING -o INT -p tcp --sport $PORTS -j SNAT --to-source $MYTSIP:$PORTS
+iptables -t nat -A PREROUTING -i EXT -p udp --dport $PORTS -j DNAT --to-destination $HLIP
+iptables -t nat -A POSTROUTING -o INT -p udp --sport $PORTS -j SNAT --to-source $MYTSIP:$PORTS
 
 # make rules persistent
 sudo iptables-save > /etc/iptables/rules.v4
