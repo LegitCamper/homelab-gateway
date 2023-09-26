@@ -3,7 +3,7 @@ apt-get upgrade -y
 apt-get install -y iptables-persistent
 curl -fsSL https://tailscale.com/install.sh | sh
 tailscale login
-tailscale up
+tailscale up --advertise-exit-node
 
 MYIP=$(ip addr show eth0 | grep "inet " | cut -d '/' -f1 | cut -d ' ' -f6 | head -n 1)
 HLIP=$(tailscale ip -4 homelab)
