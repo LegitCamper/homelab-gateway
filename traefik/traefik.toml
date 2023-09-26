@@ -13,11 +13,6 @@ insecure = true
 address = ":80"
 [entryPoints.udp80]
 address = ":80/udp"
-# HTTP ALT
-[entryPoints.tcp8080]
-address = ":8080"
-[entryPoints.udp8080]
-address = ":8080/udp"
 # HTTPS
 [entryPoints.tcp443]
 address = ":443"
