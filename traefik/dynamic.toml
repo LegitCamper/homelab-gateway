@@ -19,7 +19,7 @@ url = "http://127.0.0.1:8080"
 url = "http://homelab.dunker-arctic.ts.net:10000"
 [http.services.searxng.loadBalancer]
 [[http.services.searxng.loadBalancer.servers]]
-url = "https://homelab.dunker-arctic.ts.net:9000"
+url = "http://homelab.dunker-arctic.ts.net:9000"
 
 [tcp]
 [tcp.routers]
@@ -30,4 +30,4 @@ service = "minecraft"
 [tcp.services]
 [tcp.services.minecraft.loadBalancer]
 [[tcp.services.minecraft.loadBalancer.servers]]
-url = "https://homelab.dunker-arctic.ts.net:25565"
+url = "homelab.dunker-arctic.ts.net:25565"
