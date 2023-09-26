@@ -16,33 +16,25 @@ address = ":80"
 insecure = true
 [entryPoints.udp80]
 address = ":80/udp"
-
 # HTTP ALT
-[entryPoints]
 [entryPoints.tcp8080]
 address = ":8080"
 [entryPoints.tcp.forwardedHeaders]
 insecure = true
 [entryPoints.udp8080]
-
 # HTTPS
-[entryPoints]
 [entryPoints.tcp443]
 address = ":443"
 [entryPoints.tcp.forwardedHeaders]
 insecure = true
 [entryPoints.udp443]
-
 # DNS
-[entryPoints]
 [entryPoints.tcp53]
 address = ":53"
 [entryPoints.tcp.forwardedHeaders]
 insecure = true
 [entryPoints.udp53]
-
 # MINECRAFT
-[entryPoints]
 [entryPoints.tcp25565]
 address = ":25565"
 [entryPoints.tcp.forwardedHeaders]
