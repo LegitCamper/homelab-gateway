@@ -1,8 +1,7 @@
 [http]
 [http.routers]
 [http.routers.to-traefik]
-rule = "Host(`traefik.sawyer.services`) && (PathPrefix(`/api`) || PathPrefix(`/dashboard`))"
-service = "api@internal"
+rule = "Host(`traefik.sawyer.services`)"
 [http.routers.to-dashy]
 rule = "Host(`dashy.sawyer.services`)"
 service = "dashy"
@@ -11,9 +10,12 @@ rule = "Host(`searxng.sawyer.services`)"
 service = "searxng"
 
 [http.services]
+[http.services.traefik.loadBalancer]
+[[http.services.traefik.loadBalancer.servers]]
+url = "http://127.0.0.1:8080"
 [http.services.dashy.loadBalancer]
 [[http.services.dashy.loadBalancer.servers]]
-url = "http://homelab.dunker-arctic.ts.net:80"
+url = "http://homelab.dunker-arctic.ts.net:10000"
 [http.services.searxng.loadBalancer]
 [[http.services.searxng.loadBalancer.servers]]
 url = "https://homelab.dunker-arctic.ts.net:9000"
