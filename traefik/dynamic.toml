@@ -9,6 +9,9 @@ service = "dashy"
 [http.routers.to-searxng]
 rule = "Host(`searxng.sawyer.services`)"
 service = "searxng"
+[http.routers.to-search]
+rule = "Host(`search.sawyer.services`)"
+service = "searxng"
 
 [http.services]
 [http.services.dashy.loadBalancer]
