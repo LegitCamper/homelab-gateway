@@ -1,3 +1,5 @@
+[providers]
+[providers.file]
 [http]
 [http.routers]
 [http.routers.to-traefik]
