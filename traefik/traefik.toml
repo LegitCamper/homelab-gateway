@@ -18,9 +18,9 @@ address = ":443/udp"
 # [entryPoints.udp53]
 # address = ":53/udp"
 # MINECRAFT
-[entryPoints.tcp25565]
+[entryPoints.minecraft-tcp]
 address = ":25565"
-[entryPoints.udp25565]
+[entryPoints.minecraft-udp]
 address = ":25565/udp"
 
 [providers]

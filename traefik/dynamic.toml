@@ -24,10 +24,23 @@ url = "http://homelab.dunker-arctic.ts.net:9000"
 [tcp]
 [tcp.routers]
 [tcp.routers.to-minecraft]
+entryPoints = ["minecraft-tcp"]
 rule = "Host(`minecraft.sawyer.services`)"
 service = "minecraft"
 
 [tcp.services]
 [tcp.services.minecraft.loadBalancer]
 [[tcp.services.minecraft.loadBalancer.servers]]
-url = "100.103.193.140:25565"
+address = "100.103.193.140:25565"
+
+[udp]
+[udp.routers]
+[udp.routers.to-minecraft]
+entryPoints = ["minecraft-udp"]
+rule = "Host(`minecraft.sawyer.services`)"
+service = "minecraft"
+
+[udp.services]
+[udp.services.minecraft.loadBalancer]
+[[udp.services.minecraft.loadBalancer.servers]]
+address = "100.103.193.140:25565"
