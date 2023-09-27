@@ -1,9 +1,7 @@
-[providers]
-[providers.file]
 [http]
 [http.routers]
 [http.routers.to-traefik]
-rule = "Host(`traefik.sawyer.services`) && (PathPrefix(`/api`) || PathPrefix(`/dashboard`) || (PathPrefix(`/`))"
+rule = "Host(`traefik.sawyer.services`) && (PathPrefix(`/api`) || PathPrefix(`/dashboard`))"
 service = "api@internal"
 [http.routers.to-dashy]
 rule = "Host(`dashy.sawyer.services`)"
@@ -29,4 +27,4 @@ service = "minecraft"
 [tcp.services]
 [tcp.services.minecraft.loadBalancer]
 [[tcp.services.minecraft.loadBalancer.servers]]
-url = "homelab.dunker-arctic.ts.net:25565"
+url = "100.103.193.140:25565"

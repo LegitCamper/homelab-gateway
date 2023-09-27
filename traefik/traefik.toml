@@ -2,12 +2,6 @@
 dashboard = true
 insecure = true
 
-# [providers.docker]
-#allowEmptyServices = true
-# watch = true
-# endpoint = "unix:///var/run/docker.sock"
-# exposedByDefault = true
-
 # HTTP
 [entryPoints.tcp80]
 address = ":80"
@@ -32,6 +26,11 @@ address = ":25565/udp"
 [providers]
 [providers.file]
 directory = "/etc/traefik/"
+# [providers.docker]
+#allowEmptyServices = true
+# watch = true
+# endpoint = "unix:///var/run/docker.sock"
+# exposedByDefault = true
 
 [serversTransport]
 insecureSkipVerify = true
