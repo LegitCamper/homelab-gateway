@@ -42,11 +42,15 @@
         # go build ./cmd/traefik
         # ~/go/src/github.com/traefik/traefik
 
-    - name: add ansible user
-      user: name=ansible uid=900
+        
+    - name: copy ansible-pull service
+      shell: wget https://raw.githubusercontent.com/LegitCamper/homelab-proxy/main/ansible-pull.service -O /etc/systemd/system/ansible-pull.service
 
-    - name: ansible-pull automatically
-      cron: user="ansible" name="ansible provision" minute="*/5" job="/usr/bin/ansible-pull -o -U https://github.com/LegitCamper/homelab-proxy.git > /dev/null"
+    - name: Start ansible-pull service, if not started
+      service:
+        name: ansible-pull
+        state: started
+        daemon_reload: yes
 
     - name: copy traefik service
       shell: wget https://raw.githubusercontent.com/LegitCamper/homelab-proxy/main/traefik.service -O /etc/systemd/system/traefik.service
