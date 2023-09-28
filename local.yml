@@ -11,8 +11,9 @@
           - docker.io
           - make
 
-    - name: login and setup tailscale
+    - name: installs, logs in, and setups tailscale
       shell: |
+        curl -fsSL https://tailscale.com/install.sh | sh
         tailscaleapikey="$(<tailscaleapikey.txt)"
         tailscale login --authkey=$tailscaleapikey
         tailscale up --hostname=homelab-proxy
