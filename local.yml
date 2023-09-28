@@ -19,13 +19,14 @@
 
     - name: installs, logs in, and setups tailscale
       shell: |
+        set timeout 300
         curl -fsSL https://tailscale.com/install.sh > tailscale_install.sh
         chmod 777 tailscale_install.sh
         ./tailscale_install.sh
         tailscaleapikey="$(</root/tailscaleapikey.txt)"
         tailscale login --authkey=$tailscaleapikey
         tailscale up --hostname=homelab-proxy
-        exit
+        exit 0
 
     - name: get traefik configs
       shell: |
