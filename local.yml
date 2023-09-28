@@ -1,0 +1,56 @@
+---
+- hosts: localhost
+  connection: local
+  become: true
+
+  tasks:
+  - name: install packages
+	package: 
+	  name:
+		- golang
+		- docker.io
+		- make
+
+  - name: login and setup tailscale
+	shell: |
+	  tailscale up --hostname=homelab-proxy 
+	
+  - name: get traefik configs
+	shell: |
+	  mkdir /etc/traefik
+	  wget https://raw.githubusercontent.com/LegitCamper/homelab-proxy/main/traefik/traefik.toml -O /etc/traefik/traefik.toml
+ 	  wget https://raw.githubusercontent.com/LegitCamper/homelab-proxy/main/traefik/dynamic.toml -O /etc/traefik/dynamic.toml
+
+  - name: install traefik
+	shell: |
+	  wget https://github.com/traefik/traefik/releases/download/v2.9.6/traefik_v2.9.6_linux_amd64.tar.gz -O traefik.tar.gz
+	  tar xzvf traefik.tar.gz
+	  
+	  # this is for after release of treafik v3.0
+	  # git clone https://github.com/traefik/traefik.git
+	  # cd traefik
+	  # git pull
+	  # # Generate UI static files
+	  # make clean-webui generate-webui
+	  # # required to merge non-code components into the final binary,
+	  # # such as the web dashboard/UI
+	  # go generate
+	  # # Standard go build
+	  # go build ./cmd/traefik
+	  # ~/go/src/github.com/traefik/traefik
+
+  - name: add ansible user
+    user: name=ansible uid=900
+
+  - name: ansible-pull automatically
+	cron: user="ansible" name="ansible provision" minute="*/5" job="/usr/bin/ansible-pull -o -U https://github.com/LegitCamper/homelab-proxy.git > /dev/null"
+
+  - name: copy traefik service
+	shell: wget https://raw.githubusercontent.com/LegitCamper/homelab-proxy/main/traefik.service -O /etc/systemd/system/traefik.service
+
+  - name: Start traefik service, if not started
+    service:
+      name: traefik
+      state: started
+	  name: httpd
+	  daemon_reload: yes

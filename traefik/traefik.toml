@@ -37,7 +37,8 @@ directory = "/etc/traefik/"
 [serversTransport]
 insecureSkipVerify = true
 
-[certificatesResolvers.myresolver.tailscale]
+# this should be turned on after traefik v3.0 is released
+# [certificatesResolvers.myresolver.tailscale]
 
 [experimental]
 http3 = true

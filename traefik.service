@@ -1,0 +1,10 @@
+[Unit]
+Description=The Cloud Native Application Proxy
+After=multi-user.target
+
+[Service]
+ExecStart=/root/traefik
+Type=simple
+
+[Install]
+WantedBy=multi-user.target
