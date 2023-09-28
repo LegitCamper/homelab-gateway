@@ -3,7 +3,7 @@ Description=The Cloud Native Application Proxy
 After=multi-user.target
 
 [Service]
-ExecStart=/root/traefik
+ExecStart=/bin/traefik
 Type=simple
 
 [Install]

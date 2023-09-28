@@ -36,8 +36,11 @@
 
     - name: install traefik
       shell: |
+        cd /tmp
         wget https://github.com/traefik/traefik/releases/download/v2.9.6/traefik_v2.9.6_linux_amd64.tar.gz -O traefik.tar.gz
         tar xzvf traefik.tar.gz
+        mv traefik /bin/traefik
+        rm traefik.tar.gz
 
         # this is for after release of treafik v3.0
         # git clone https://github.com/traefik/traefik.git
