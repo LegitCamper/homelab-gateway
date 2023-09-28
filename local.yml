@@ -18,15 +18,15 @@
         - make
 
     - name: installs, logs in, and setups tailscale
-      shell: 
-        - executable: /bin/bash
-        - cmd: |
-            set timeout 30
-            curl -fsSL https://tailscale.com/install.sh | sh
-            tailscaleapikey="$(</root/tailscaleapikey.txt)"
-            tailscale login --authkey=$tailscaleapikey
-            tailscale up --hostname=homelab-proxy
-            exit 0
+      shell: |
+          set timeout 30
+          curl -fsSL https://tailscale.com/install.sh | sh
+          tailscaleapikey="$(</root/tailscaleapikey.txt)"
+          tailscale login --authkey=$tailscaleapikey
+          tailscale up --hostname=homelab-proxy
+          exit 0
+      args:
+        executable: /bin/bash
 
     - name: get traefik configs
       shell: |
