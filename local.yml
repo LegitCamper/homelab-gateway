@@ -13,6 +13,8 @@
 
   - name: login and setup tailscale
 	shell: |
+      tailscaleapikey="$(<tailscaleapikey.txt)"
+      tailscale login --authkey=$tailscaleapikey
 	  tailscale up --hostname=homelab-proxy 
 	
   - name: get traefik configs
