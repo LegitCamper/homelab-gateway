@@ -3,15 +3,17 @@ dashboard = true
 insecure = true
 
 # HTTP
-[entryPoints.tcp80]
+[entryPoints.web-tcp]
 address = ":80"
-[entryPoints.udp80]
+[entryPoints.web-udp]
 address = ":80/udp"
 # HTTPS
-[entryPoints.tcp443]
+[entryPoints.https-tcp]
 address = ":443"
-[entryPoints.udp443]
+certResolver = "myresolver"
+[entryPoints.https-udp]
 address = ":443/udp"
+certResolver = "myresolver"
 # DNS
 # [entryPoints.tcp53]
 # address = ":53"

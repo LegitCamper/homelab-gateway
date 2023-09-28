@@ -1,7 +1,7 @@
 [http]
 [http.routers]
 [http.routers.to-traefik]
-rule = "Host(`traefik.sawyer.services`) && (PathPrefix(`/api`) || PathPrefix(`/dashboard`))"
+rule = "Host(`traefik.sawyer.services`)"
 service = "api@internal"
 [http.routers.to-dashy]
 rule = "Host(`dashy.sawyer.services`)"
@@ -25,7 +25,7 @@ url = "http://homelab.dunker-arctic.ts.net:9000"
 [tcp.routers]
 [tcp.routers.to-minecraft]
 entryPoints = ["minecraft-tcp"]
-rule = "Host(`minecraft.sawyer.services`)"
+rule = "HostSNI(`minecraft.sawyer.services`) ||HostSNI(`mc.sawyer.services`)"
 service = "minecraft"
 
 [tcp.services]
@@ -37,7 +37,7 @@ address = "100.103.193.140:25565"
 [udp.routers]
 [udp.routers.to-minecraft]
 entryPoints = ["minecraft-udp"]
-rule = "Host(`minecraft.sawyer.services`)"
+rule = "HostSNI(`minecraft.sawyer.services`) ||HostSNI(`mc.sawyer.services`)"
 service = "minecraft"
 
 [udp.services]

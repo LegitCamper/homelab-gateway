@@ -4,6 +4,7 @@ apt-get install -y docker.io
 curl -fsSL https://tailscale.com/install.sh | sh
 tailscale login
 tailscale up --advertise-exit-node --hostname=homelab-proxy
+tailscale cert homelab-proxy.dunker-artic.ts.net
 
 mkdir /etc/traefik
 wget https://raw.githubusercontent.com/LegitCamper/homelab-proxy/main/traefik/traefik.toml -O /etc/traefik/traefik.toml
