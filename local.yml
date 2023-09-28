@@ -16,6 +16,8 @@
         - golang
         - docker.io
         - make
+        - apt-config-auto-update
+        - unattended-upgrades
 
     - name: installs, logs in, and setups tailscale
       shell: |
@@ -54,11 +56,6 @@
         # # Standard go build
         # go build ./cmd/traefik
         # ~/go/src/github.com/traefik/traefik
-
-    - name: install unattended upgrades
-      shell: |
-        apt install unattended-upgrades
-        sudo apt install apt-config-auto-update
 
     - name: Start unattended upgrades
       service:
