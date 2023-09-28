@@ -5,11 +5,13 @@
 
   tasks:
     - name: install packages
-      package:
-        name:
-          - golang
-          - docker.io
-          - make
+      apt:
+        name: "{{ item }}"
+        update_cache: yes
+      loop:
+        - golang
+        - docker.io
+        - make
 
     - name: installs, logs in, and setups tailscale
       shell: |
