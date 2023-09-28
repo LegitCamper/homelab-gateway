@@ -42,13 +42,25 @@
         # go build ./cmd/traefik
         # ~/go/src/github.com/traefik/traefik
 
-        
+    - name: install unattended upgrades
+      shell: |
+        apt install unattended-upgrades
+        sudo apt install apt-config-auto-update
+
+    - name: Start unattended upgrades
+      service:
+        name: unattended-upgrades
+        enabled: true 
+        state: started
+        daemon_reload: yes        
+
     - name: copy ansible-pull service
       shell: wget https://raw.githubusercontent.com/LegitCamper/homelab-proxy/main/ansible-pull.service -O /etc/systemd/system/ansible-pull.service
 
     - name: Start ansible-pull service, if not started
       service:
         name: ansible-pull
+        enabled: true 
         state: started
         daemon_reload: yes
 
@@ -58,5 +70,6 @@
     - name: Start traefik service, if not started
       service:
         name: traefik
+        enabled: true 
         state: started
         daemon_reload: yes
