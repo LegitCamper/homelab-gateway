@@ -8,6 +8,10 @@
       apt:
         name: "{{ item }}"
         update_cache: yes
+        install_recommends: no
+        force: yes
+        dpkg_options: 'force-confdef,force-confold'
+        state: latest
       loop:
         - golang
         - docker.io
@@ -21,6 +25,7 @@
         tailscaleapikey="$(</root/tailscaleapikey.txt)"
         tailscale login --authkey=$tailscaleapikey
         tailscale up --hostname=homelab-proxy
+        exit
 
     - name: get traefik configs
       shell: |
