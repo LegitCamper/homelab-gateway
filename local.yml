@@ -13,10 +13,9 @@
         dpkg_options: 'force-confdef,force-confold'
         state: latest
       loop:
-        - golang
-        - docker.io
-        - make
         - webhook
+        - golang
+        # - docker.io
         # - apt-config-auto-update
         # - unattended-upgrades
 
