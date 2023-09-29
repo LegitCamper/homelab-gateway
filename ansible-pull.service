@@ -7,11 +7,9 @@ Type=simple
 WorkingDirectory=/opt/hooks
 ExecStart=/bin/webhook -hooks /root/hooks.json
 Restart=on-failure
-StartLimitBurst=2
+StartLimitBurst=25
 # Restart, but not more than once every 10 minutes
-#StartLimitInterval=600
-# Restart, but not more than once every 30s (for testing purposes)
-StartLimitInterval=30
+StartLimitInterval=600
 PrivateTmp=true
 
 [Install]
