@@ -40,7 +40,7 @@ url = "http://homelab.dunker-arctic.ts.net:32400"
 url = "http://homelab.dunker-arctic.ts.net:9091"
 [http.services.portainer.loadBalancer]
 [[http.services.portainer.loadBalancer.servers]]
-url = "http://homelab.dunker-arctic.ts.net:8000"
+url = "http://homelab.dunker-arctic.ts.net:9443"
 [http.services.registry.loadBalancer]
 [[http.services.registry.loadBalancer.servers]]
 url = "http://homelab.dunker-arctic.ts.net:5000"
@@ -90,7 +90,7 @@ url = "https://homelab.dunker-arctic.ts.net:32400"
 url = "https://homelab.dunker-arctic.ts.net:9091"
 [https.services.portainer.loadBalancer]
 [[https.services.portainer.loadBalancer.servers]]
-url = "https://homelab.dunker-arctic.ts.net:8000"
+url = "https://homelab.dunker-arctic.ts.net:9443"
 [https.services.registry.loadBalancer]
 [[https.services.registry.loadBalancer.servers]]
 url = "https://homelab.dunker-arctic.ts.net:5000"
