@@ -1,7 +1,7 @@
 [
   {
     "id": "redeploy-webhook",
-    "execute-command": "/usr/bin/ansible-pull -o -U https://github.com/LegitCamper/homelab-proxy.git > /dev/null",
+    "execute-command": "ansible-pull -o -U https://github.com/LegitCamper/homelab-proxy.git > /dev/null",
     "command-working-directory": "/var/webhook"
   }
 ]

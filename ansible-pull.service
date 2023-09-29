@@ -1,14 +1,11 @@
 [Unit]
 Description=ansible pull webhook
 After=network.target
-
 [Service]
-User=http
 Type=simple
+WorkingDirectory=/opt/hooks
 ExecStart=/bin/webhook -hooks /root/hooks.json -verbose
-Restart=always
-StartLimitInterval=1min
-StartLimitBurst=60
-
+Restart=on-failure
+PrivateTmp=true
 [Install]
-WantedBy=multi-user.target
+WantedBy=default.target
