@@ -68,6 +68,8 @@
         wget https://raw.githubusercontent.com/LegitCamper/homelab-proxy/main/hooks.json -O /root/hooks.json
         string=s/mysecret/$(</root/webhooksecret.txt)/g
         sed -i $string /root/hooks.json
+      args:
+        executable: /bin/bash
 
     - name: copy ansible-pull service
       shell: |
