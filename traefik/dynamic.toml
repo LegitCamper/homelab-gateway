@@ -31,7 +31,7 @@ service = "github"
 url = "http://homelab.dunker-arctic.ts.net:10000"
 [http.services.searxng.loadBalancer]
 [[http.services.searxng.loadBalancer.servers]]
-url = "http://homelab.dunker-arctic.ts.net:9000"
+url = "http://homelab.dunker-arctic.ts.net:9001"
 [http.services.plex.loadBalancer]
 [[http.services.plex.loadBalancer.servers]]
 url = "http://homelab.dunker-arctic.ts.net:32400"
@@ -40,7 +40,7 @@ url = "http://homelab.dunker-arctic.ts.net:32400"
 url = "http://homelab.dunker-arctic.ts.net:9091"
 [http.services.portainer.loadBalancer]
 [[http.services.portainer.loadBalancer.servers]]
-url = "https://homelab.dunker-arctic.ts.net:9443"
+url = "http://homelab.dunker-arctic.ts.net:9000"
 [http.services.registry.loadBalancer]
 [[http.services.registry.loadBalancer.servers]]
 url = "http://homelab.dunker-arctic.ts.net:5000"
@@ -81,7 +81,7 @@ service = "github"
 url = "https://homelab.dunker-arctic.ts.net:10000"
 [https.services.searxng.loadBalancer]
 [[https.services.searxng.loadBalancer.servers]]
-url = "https://homelab.dunker-arctic.ts.net:9000"
+url = "https://homelab.dunker-arctic.ts.net:9001"
 [https.services.plex.loadBalancer]
 [[https.services.plex.loadBalancer.servers]]
 url = "https://homelab.dunker-arctic.ts.net:32400"
