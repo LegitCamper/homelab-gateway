@@ -5,7 +5,7 @@ After=network.target
 
 Type=simple
 WorkingDirectory=/opt/hooks
-ExecStart=/bin/webhook -hooks /root/hooks.json -verbose
+ExecStart=/bin/webhook -hooks /root/hooks.json
 Restart=on-failure
 StartLimitBurst=2
 # Restart, but not more than once every 10 minutes
