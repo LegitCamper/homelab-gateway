@@ -72,6 +72,7 @@
       shell: |
         wget https://raw.githubusercontent.com/LegitCamper/homelab-proxy/main/ansible-pull.service -O /etc/systemd/system/ansible-pull.service
         wget https://raw.githubusercontent.com/LegitCamper/homelab-proxy/main/ansible-pull.sh -O /root/ansible-pull.sh
+        chmod +x /root/ansible-pull.sh
 
     - name: Start ansible-pull service, if not started
       service:
