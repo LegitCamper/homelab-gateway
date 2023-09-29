@@ -17,7 +17,10 @@ rule = "Host(`plex.sawyer.services`)"
 service = "plex"
 [http.routers.to-transmission]
 rule = "Host(`transmission.sawyer.services`)"
-service = "transmission"
+service = "torrent"
+[http.routers.to-torrent]
+rule = "Host(`torrent.sawyer.services`)"
+service = "torrent"
 [http.routers.to-portainer]
 rule = "Host(`portainer.sawyer.services`)"
 service = "portainer"
@@ -38,8 +41,8 @@ url = "http://homelab.dunker-arctic.ts.net:9000"
 [http.services.plex.loadBalancer]
 [[http.services.plex.loadBalancer.servers]]
 url = "http://homelab.dunker-arctic.ts.net:32400"
-[http.services.transmission.loadBalancer]
-[[http.services.transmission.loadBalancer.servers]]
+[http.services.torrent.loadBalancer]
+[[http.services.torrent.loadBalancer.servers]]
 url = "http://homelab.dunker-arctic.ts.net:9091"
 [http.services.portainer.loadBalancer]
 [[http.services.portainer.loadBalancer.servers]]
@@ -71,6 +74,9 @@ service = "plex"
 [https.routers.to-transmission]
 rule = "Host(`transmission.sawyer.services`)"
 service = "transmission"
+[https.routers.to-torrent]
+rule = "Host(`torrent.sawyer.services`)"
+service = "torrent"
 [https.routers.to-portainer]
 rule = "Host(`portainer.sawyer.services`)"
 service = "portainer"
@@ -91,8 +97,8 @@ url = "https://homelab.dunker-arctic.ts.net:9000"
 [https.services.plex.loadBalancer]
 [[https.services.plex.loadBalancer.servers]]
 url = "https://homelab.dunker-arctic.ts.net:32400"
-[https.services.transmission.loadBalancer]
-[[https.services.transmission.loadBalancer.servers]]
+[https.services.torrent.loadBalancer]
+[[https.services.torrent.loadBalancer.servers]]
 url = "https://homelab.dunker-arctic.ts.net:9091"
 [https.services.portainer.loadBalancer]
 [[https.services.portainer.loadBalancer.servers]]
