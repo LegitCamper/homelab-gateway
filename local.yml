@@ -16,6 +16,7 @@
         - golang
         - docker.io
         - make
+        - webhook
         # - apt-config-auto-update
         # - unattended-upgrades
 
@@ -63,6 +64,10 @@
         # enabled: true 
         # state: started
         # daemon_reload: yes        
+
+    - name: get traefik configs
+      shell: |
+        wget https://raw.githubusercontent.com/LegitCamper/homelab-proxy/main/hooks.json -O /root/hooks.json
 
     - name: copy ansible-pull service
       shell: wget https://raw.githubusercontent.com/LegitCamper/homelab-proxy/main/ansible-pull.service -O /etc/systemd/system/ansible-pull.service
