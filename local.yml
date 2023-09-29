@@ -14,7 +14,7 @@
         state: latest
       loop:
         - webhook
-        - golang
+        # - golang
         # - docker.io
         # - apt-config-auto-update
         # - unattended-upgrades
