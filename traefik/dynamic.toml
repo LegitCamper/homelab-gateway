@@ -12,6 +12,21 @@ service = "searxng"
 [http.routers.to-search]
 rule = "Host(`search.sawyer.services`)"
 service = "searxng"
+[http.routers.to-plex]
+rule = "Host(`plex.sawyer.services`)"
+service = "plex"
+[http.routers.to-transmission]
+rule = "Host(`transmission.sawyer.services`)"
+service = "transmission"
+[http.routers.to-portainer]
+rule = "Host(`portainer.sawyer.services`)"
+service = "portainer"
+[http.routers.to-registry]
+rule = "Host(`registry.sawyer.services`)"
+service = "registry"
+[http.routers.to-github]
+rule = "Host(`gh.sawyer.services`)"
+service = "github"
 
 [http.services]
 [http.services.dashy.loadBalancer]
@@ -20,6 +35,21 @@ url = "http://homelab.dunker-arctic.ts.net:10000"
 [http.services.searxng.loadBalancer]
 [[http.services.searxng.loadBalancer.servers]]
 url = "http://homelab.dunker-arctic.ts.net:9000"
+[http.services.plex.loadBalancer]
+[[http.services.plex.loadBalancer.servers]]
+url = "http://homelab.dunker-arctic.ts.net:32400"
+[http.services.transmission.loadBalancer]
+[[http.services.transmission.loadBalancer.servers]]
+url = "http://homelab.dunker-arctic.ts.net:9091"
+[http.services.portainer.loadBalancer]
+[[http.services.portainer.loadBalancer.servers]]
+url = "http://homelab.dunker-arctic.ts.net:8000"
+[http.services.registry.loadBalancer]
+[[http.services.registry.loadBalancer.servers]]
+url = "http://homelab.dunker-arctic.ts.net:5000"
+[http.services.github.loadBalancer]
+[[http.services.github.loadBalancer.servers]]
+url = "https://github.com/Legitcamper"
 
 [tcp]
 [tcp.routers]
