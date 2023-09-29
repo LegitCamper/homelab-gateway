@@ -51,6 +51,59 @@ url = "http://homelab.dunker-arctic.ts.net:5000"
 [[http.services.github.loadBalancer.servers]]
 url = "https://github.com/Legitcamper"
 
+[https]
+[https.routers]
+[https.routers.to-traefik]
+rule = "Host(`traefik.sawyer.services`)"
+service = "api@internal"
+[https.routers.to-dashy]
+rule = "Host(`dashy.sawyer.services`)"
+service = "dashy"
+[https.routers.to-searxng]
+rule = "Host(`searxng.sawyer.services`)"
+service = "searxng"
+[https.routers.to-search]
+rule = "Host(`search.sawyer.services`)"
+service = "searxng"
+[https.routers.to-plex]
+rule = "Host(`plex.sawyer.services`)"
+service = "plex"
+[https.routers.to-transmission]
+rule = "Host(`transmission.sawyer.services`)"
+service = "transmission"
+[https.routers.to-portainer]
+rule = "Host(`portainer.sawyer.services`)"
+service = "portainer"
+[https.routers.to-registry]
+rule = "Host(`registry.sawyer.services`)"
+service = "registry"
+[https.routers.to-github]
+rule = "Host(`gh.sawyer.services`)"
+service = "github"
+
+[https.services]
+[https.services.dashy.loadBalancer]
+[[https.services.dashy.loadBalancer.servers]]
+url = "https://homelab.dunker-arctic.ts.net:10000"
+[https.services.searxng.loadBalancer]
+[[https.services.searxng.loadBalancer.servers]]
+url = "https://homelab.dunker-arctic.ts.net:9000"
+[https.services.plex.loadBalancer]
+[[https.services.plex.loadBalancer.servers]]
+url = "https://homelab.dunker-arctic.ts.net:32400"
+[https.services.transmission.loadBalancer]
+[[https.services.transmission.loadBalancer.servers]]
+url = "https://homelab.dunker-arctic.ts.net:9091"
+[https.services.portainer.loadBalancer]
+[[https.services.portainer.loadBalancer.servers]]
+url = "https://homelab.dunker-arctic.ts.net:8000"
+[https.services.registry.loadBalancer]
+[[https.services.registry.loadBalancer.servers]]
+url = "https://homelab.dunker-arctic.ts.net:5000"
+[https.services.github.loadBalancer]
+[[https.services.github.loadBalancer.servers]]
+url = "https://github.com/Legitcamper"
+
 [tcp]
 [tcp.routers]
 [tcp.routers.to-minecraft]
