@@ -46,7 +46,7 @@ url = "http://homelab.dunker-arctic.ts.net:8000"
 url = "http://homelab.dunker-arctic.ts.net:5000"
 [http.services.github.loadBalancer]
 [[http.services.github.loadBalancer.servers]]
-url = "https://github.com/Legitcamper"
+url = "https://github.com/Legitcamper:443"
 
 [https]
 [https.routers]
@@ -114,7 +114,8 @@ address = "100.103.193.140:25565"
 [udp.routers]
 [udp.routers.to-minecraft]
 entryPoints = ["minecraft-udp"]
-rule = "HostSNI(`minecraft.sawyer.services`) || HostSNI(`mc.sawyer.services`)"
+# UDP does not use rules?
+# rule = "HostSNI(`minecraft.sawyer.services`) || HostSNI(`mc.sawyer.services`)"
 service = "minecraft"
 
 [udp.services]
