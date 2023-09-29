@@ -104,6 +104,8 @@ url = "https://github.com/Legitcamper"
 entryPoints = ["minecraft-tcp"]
 rule = "HostSNI(`minecraft.sawyer.services`) || HostSNI(`mc.sawyer.services`)"
 service = "minecraft"
+[tcp.routers.to-minecraft.tls]
+passthrough = true
 
 [tcp.services]
 [tcp.services.minecraft.loadBalancer]
