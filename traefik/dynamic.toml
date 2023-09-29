@@ -7,19 +7,13 @@ service = "api@internal"
 rule = "Host(`dashy.sawyer.services`)"
 service = "dashy"
 [http.routers.to-searxng]
-rule = "Host(`searxng.sawyer.services`)"
-service = "searxng"
-[http.routers.to-search]
-rule = "Host(`search.sawyer.services`)"
+rule = "Host(`searxng.sawyer.services`) || Host(`search.sawyer.services`)"
 service = "searxng"
 [http.routers.to-plex]
 rule = "Host(`plex.sawyer.services`)"
 service = "plex"
-[http.routers.to-transmission]
-rule = "Host(`transmission.sawyer.services`)"
-service = "torrent"
 [http.routers.to-torrent]
-rule = "Host(`torrent.sawyer.services`)"
+rule = "Host(`transmission.sawyer.services`) || Host(`torrent.sawyer.services`)"
 service = "torrent"
 [http.routers.to-portainer]
 rule = "Host(`portainer.sawyer.services`)"
@@ -28,7 +22,7 @@ service = "portainer"
 rule = "Host(`registry.sawyer.services`)"
 service = "registry"
 [http.routers.to-github]
-rule = "Host(`gh.sawyer.services`)"
+rule = "Host(`github.sawyer.services`) || Host(`gh.sawyer.services`)"
 service = "github"
 
 [http.services]
@@ -62,20 +56,14 @@ service = "api@internal"
 [https.routers.to-dashy]
 rule = "Host(`dashy.sawyer.services`)"
 service = "dashy"
-[https.routers.to-searxng]
-rule = "Host(`searxng.sawyer.services`)"
-service = "searxng"
 [https.routers.to-search]
-rule = "Host(`search.sawyer.services`)"
+rule = "Host(`searxng.sawyer.services`) || Host(`search.sawyer.services`)"
 service = "searxng"
 [https.routers.to-plex]
 rule = "Host(`plex.sawyer.services`)"
 service = "plex"
-[https.routers.to-transmission]
-rule = "Host(`transmission.sawyer.services`)"
-service = "transmission"
 [https.routers.to-torrent]
-rule = "Host(`torrent.sawyer.services`)"
+rule = "Host(`transmission.sawyer.services`) || Host(`torrent.sawyer.services`)"
 service = "torrent"
 [https.routers.to-portainer]
 rule = "Host(`portainer.sawyer.services`)"
