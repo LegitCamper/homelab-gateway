@@ -1,16 +1,14 @@
 [Unit]
 Description=ansible pull webhook
 After=network.target
-[Service]
+Documentation=https://github.com/adnanh/webhook/
 
+[Service]
 Type=simple
-WorkingDirectory=/opt/hooks
-ExecStart=/bin/webhook -hooks /root/hooks.json
+ExecStart=/bin/webhook -nopanic -hooks /root/hooks.json
+User=root
+Group=root
 Restart=on-failure
-StartLimitBurst=25
-# Restart, but not more than once every 10 minutes
-StartLimitInterval=600
-PrivateTmp=true
 
 [Install]
 WantedBy=default.target
