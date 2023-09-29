@@ -14,11 +14,6 @@ address = ":443"
 [entryPoints.https-udp]
 address = ":443/udp"
 # certResolver = "myresolver"
-# DNS
-# [entryPoints.tcp53]
-# address = ":53"
-# [entryPoints.udp53]
-# address = ":53/udp"
 # MINECRAFT
 [entryPoints.minecraft-tcp]
 address = ":25565"
@@ -28,11 +23,6 @@ address = ":25565/udp"
 [providers]
 [providers.file]
 directory = "/etc/traefik/"
-# [providers.docker]
-#allowEmptyServices = true
-# watch = true
-# endpoint = "unix:///var/run/docker.sock"
-# exposedByDefault = true
 
 [serversTransport]
 insecureSkipVerify = true
