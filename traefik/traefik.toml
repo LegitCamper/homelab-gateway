@@ -10,10 +10,10 @@ address = ":80/udp"
 # HTTPS
 [entryPoints.https-tcp]
 address = ":443"
-certResolver = "myresolver"
+# certResolver = "myresolver"
 [entryPoints.https-udp]
 address = ":443/udp"
-certResolver = "myresolver"
+# certResolver = "myresolver"
 # DNS
 # [entryPoints.tcp53]
 # address = ":53"
