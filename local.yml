@@ -23,8 +23,7 @@
       shell: |
           set timeout 30
           curl -fsSL https://tailscale.com/install.sh | sh
-          tailscaleapikey="$(</root/tailscaleapikey.txt)"
-          tailscale login --authkey=$tailscaleapikey
+          tailscale login --authkey=$(</root/tailscaleapikey.txt)
           tailscale up --hostname=homelab-proxy
           exit 0
       args:
@@ -64,9 +63,10 @@
         # state: started
         # daemon_reload: yes        
 
-    - name: get traefik configs
+    - name: get webhooks
       shell: |
         wget https://raw.githubusercontent.com/LegitCamper/homelab-proxy/main/hooks.json -O /root/hooks.json
+        sed -i 's/mysecret/$(</root/webhooksecret.txt)/g' /root/hooks.json
 
     - name: copy ansible-pull service
       shell: |
