@@ -16,8 +16,8 @@
         - golang
         - docker.io
         - make
-        - apt-config-auto-update
-        - unattended-upgrades
+        # - apt-config-auto-update
+        # - unattended-upgrades
 
     - name: installs, logs in, and setups tailscale
       shell: |
@@ -57,12 +57,12 @@
         # go build ./cmd/traefik
         # ~/go/src/github.com/traefik/traefik
 
-    - name: Start unattended upgrades
-      service:
-        name: unattended-upgrades
-        enabled: true 
-        state: started
-        daemon_reload: yes        
+    # - name: Start unattended upgrades
+      # service:
+        # name: unattended-upgrades
+        # enabled: true 
+        # state: started
+        # daemon_reload: yes        
 
     - name: copy ansible-pull service
       shell: wget https://raw.githubusercontent.com/LegitCamper/homelab-proxy/main/ansible-pull.service -O /etc/systemd/system/ansible-pull.service
