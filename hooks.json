@@ -1,7 +1,7 @@
 [
   {
     "id": "redeploy-webhook",
-    "execute-command": "root/ansible-pull.sh",
-    "command-working-directory": "/var/webhook"
+    "execute-command": "ansible-pull.sh",
+    "command-working-directory": "/root"
   }
 ]
