@@ -18,6 +18,9 @@ service = "torrent"
 [http.routers.to-portainer]
 rule = "Host(`portainer.sawyer.services`)"
 service = "portainer"
+[http.routers.to-pihole-web]
+rule = "Host(`pihole-web.sawyer.services`)"
+service = "pihole-web"
 [http.routers.to-registry]
 rule = "Host(`registry.sawyer.services`)"
 service = "registry"
@@ -41,6 +44,9 @@ url = "http://homelab.dunker-arctic.ts.net:9091"
 [http.services.portainer.loadBalancer]
 [[http.services.portainer.loadBalancer.servers]]
 url = "http://homelab.dunker-arctic.ts.net:9000"
+[http.services.pihole-web.loadBalancer]
+[[http.services.pihole-web.loadBalancer.servers]]
+url = "http://homelab.dunker-arctic.ts.net:2001"
 [http.services.registry.loadBalancer]
 [[http.services.registry.loadBalancer.servers]]
 url = "http://homelab.dunker-arctic.ts.net:5000"
@@ -68,6 +74,9 @@ service = "torrent"
 [https.routers.to-portainer]
 rule = "Host(`portainer.sawyer.services`)"
 service = "portainer"
+[https.routers.to-pihole-web]
+rule = "Host(`pihole-web.sawyer.services`)"
+service = "pihole-web"
 [https.routers.to-registry]
 rule = "Host(`registry.sawyer.services`)"
 service = "registry"
@@ -91,6 +100,9 @@ url = "https://homelab.dunker-arctic.ts.net:9091"
 [https.services.portainer.loadBalancer]
 [[https.services.portainer.loadBalancer.servers]]
 url = "https://homelab.dunker-arctic.ts.net:9443"
+[https.services.pihole-web.loadBalancer]
+[[https.services.pihole-web.loadBalancer.servers]]
+url = "http://homelab.dunker-arctic.ts.net:2001"
 [https.services.registry.loadBalancer]
 [[https.services.registry.loadBalancer.servers]]
 url = "https://homelab.dunker-arctic.ts.net:5000"
