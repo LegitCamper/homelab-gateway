@@ -46,7 +46,7 @@ url = "http://homelab.dunker-arctic.ts.net:9091"
 url = "http://homelab.dunker-arctic.ts.net:9000"
 [http.services.pihole-web.loadBalancer]
 [[http.services.pihole-web.loadBalancer.servers]]
-url = "http://homelab.dunker-arctic.ts.net:2001"
+url = "http://homelab.dunker-arctic.ts.net:2001/admin"
 [http.services.registry.loadBalancer]
 [[http.services.registry.loadBalancer.servers]]
 url = "http://homelab.dunker-arctic.ts.net:5000"
@@ -102,7 +102,7 @@ url = "https://homelab.dunker-arctic.ts.net:9091"
 url = "https://homelab.dunker-arctic.ts.net:9443"
 [https.services.pihole-web.loadBalancer]
 [[https.services.pihole-web.loadBalancer.servers]]
-url = "http://homelab.dunker-arctic.ts.net:2001"
+url = "http://homelab.dunker-arctic.ts.net:2001/admin"
 [https.services.registry.loadBalancer]
 [[https.services.registry.loadBalancer.servers]]
 url = "https://homelab.dunker-arctic.ts.net:5000"
