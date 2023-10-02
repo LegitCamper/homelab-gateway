@@ -21,11 +21,8 @@ service = "portainer"
 [http.routers.to-pihole-web]
 rule = "Host(`pihole-web.sawyer.services`)"
 service = "pihole-web"
-[http.routers.to-files]
-rule = "Host(`files.sawyer.services`)"
-service = "files"
 [http.routers.to-filebrowser]
-rule = "Host(`filebrowser.sawyer.services`)"
+rule = "Host(`filebrowser.sawyer.services`) || Host(`files.sawyer.services`)"
 service = "files"
 [http.routers.to-graphana]
 rule = "Host(`graphana.sawyer.services`)"
@@ -59,7 +56,7 @@ url = "http://homelab.dunker-arctic.ts.net:2001/admin"
 [http.services.files.loadBalancer]
 [[http.services.files.loadBalancer.servers]]
 url = "http://homelab.dunker-arctic.ts.net:9003"
-[http.services.grahpana.loadBalancer]
+[http.services.graphana.loadBalancer]
 [[http.services.graphana.loadBalancer.servers]]
 url = "http://homelab.dunker-arctic.ts.net:9005"
 [http.services.registry.loadBalancer]
@@ -92,11 +89,8 @@ service = "portainer"
 [https.routers.to-pihole-web]
 rule = "Host(`pihole-web.sawyer.services`)"
 service = "pihole-web"
-[https.routers.to-files]
-rule = "Host(`files.sawyer.services`)"
-service = "files"
 [https.routers.to-filebrowser]
-rule = "Host(`filebrowser.sawyer.services`)"
+rule = "Host(`filebrowser.sawyer.services`) || Host(`files.sawyer.services`)"
 service = "files"
 [https.routers.to-graphana]
 rule = "Host(`graphana.sawyer.services`)"
