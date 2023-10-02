@@ -40,7 +40,7 @@ url = "http://homelab.dunker-arctic.ts.net:9001"
 url = "http://homelab.dunker-arctic.ts.net:32400"
 [http.services.torrent.loadBalancer]
 [[http.services.torrent.loadBalancer.servers]]
-url = "http://homelab.dunker-arctic.ts.net:9091"
+url = "http://homelab.dunker-arctic.ts.net:9092"
 [http.services.portainer.loadBalancer]
 [[http.services.portainer.loadBalancer.servers]]
 url = "http://homelab.dunker-arctic.ts.net:9000"
@@ -96,7 +96,7 @@ url = "https://homelab.dunker-arctic.ts.net:9001"
 url = "https://homelab.dunker-arctic.ts.net:32400"
 [https.services.torrent.loadBalancer]
 [[https.services.torrent.loadBalancer.servers]]
-url = "https://homelab.dunker-arctic.ts.net:9091"
+url = "https://homelab.dunker-arctic.ts.net:9092"
 [https.services.portainer.loadBalancer]
 [[https.services.portainer.loadBalancer.servers]]
 url = "https://homelab.dunker-arctic.ts.net:9443"
