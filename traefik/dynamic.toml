@@ -24,9 +24,9 @@ service = "pihole-web"
 [http.routers.to-filebrowser]
 rule = "Host(`filebrowser.sawyer.services`) || Host(`files.sawyer.services`)"
 service = "filebrowser"
-[http.routers.to-graphana]
-rule = "Host(`graphana.sawyer.services`)"
-service = "graphana"
+[http.routers.to-grafana]
+rule = "Host(`grafana.sawyer.services`)"
+service = "grafana"
 [http.routers.to-registry]
 rule = "Host(`registry.sawyer.services`)"
 service = "registry"
@@ -56,9 +56,9 @@ url = "http://homelab.dunker-arctic.ts.net:2001/admin"
 [http.services.filebrowser.loadBalancer]
 [[http.services.filebrowser.loadBalancer.servers]]
 url = "http://homelab.dunker-arctic.ts.net:9003"
-[http.services.graphana.loadBalancer]
-[[http.services.graphana.loadBalancer.servers]]
-url = "http://homelab.dunker-arctic.ts.net:9005"
+[http.services.grafana.loadBalancer]
+[[http.services.grafana.loadBalancer.servers]]
+url = "http://homelab.dunker-arctic.ts.net:9006"
 [http.services.registry.loadBalancer]
 [[http.services.registry.loadBalancer.servers]]
 url = "http://homelab.dunker-arctic.ts.net:5000"
@@ -92,9 +92,9 @@ service = "pihole-web"
 [https.routers.to-filebrowser]
 rule = "Host(`filebrowser.sawyer.services`) || Host(`files.sawyer.services`)"
 service = "filebrowser"
-[https.routers.to-graphana]
-rule = "Host(`graphana.sawyer.services`)"
-service = "graphana"
+[https.routers.to-grafana]
+rule = "Host(`grafana.sawyer.services`)"
+service = "grafana"
 [https.routers.to-registry]
 rule = "Host(`registry.sawyer.services`)"
 service = "registry"
@@ -124,9 +124,9 @@ url = "http://homelab.dunker-arctic.ts.net:2001/admin"
 [https.services.filebrowser.loadBalancer]
 [[https.services.filebrowser.loadBalancer.servers]]
 url = "http://homelab.dunker-arctic.ts.net:9003"
-[https.services.graphana.loadBalancer]
-[[https.services.graphana.loadBalancer.servers]]
-url = "http://homelab.dunker-arctic.ts.net:9005"
+[https.services.grafana.loadBalancer]
+[[https.services.grafana.loadBalancer.servers]]
+url = "http://homelab.dunker-arctic.ts.net:9006"
 [https.services.registry.loadBalancer]
 [[https.services.registry.loadBalancer.servers]]
 url = "https://homelab.dunker-arctic.ts.net:5000"
