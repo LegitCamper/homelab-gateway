@@ -27,6 +27,9 @@ service = "filebrowser"
 [http.routers.to-grafana]
 rule = "Host(`grafana.sawyer.services`)"
 service = "grafana"
+[http.routers.to-homarr]
+rule = "Host(`homarr.sawyer.services`)"
+service = "homarr"
 [http.routers.to-registry]
 rule = "Host(`registry.sawyer.services`)"
 service = "registry"
@@ -59,6 +62,9 @@ url = "http://homelab.dunker-arctic.ts.net:9003"
 [http.services.grafana.loadBalancer]
 [[http.services.grafana.loadBalancer.servers]]
 url = "http://homelab.dunker-arctic.ts.net:9006"
+[http.services.homarr.loadBalancer]
+[[http.services.homarr.loadBalancer.servers]]
+url = "http://homelab.dunker-arctic.ts.net:7575"
 [http.services.registry.loadBalancer]
 [[http.services.registry.loadBalancer.servers]]
 url = "http://homelab.dunker-arctic.ts.net:5000"
@@ -95,6 +101,9 @@ service = "filebrowser"
 [https.routers.to-grafana]
 rule = "Host(`grafana.sawyer.services`)"
 service = "grafana"
+[https.routers.to-homarr]
+rule = "Host(`homarr.sawyer.services`)"
+service = "homarr"
 [https.routers.to-registry]
 rule = "Host(`registry.sawyer.services`)"
 service = "registry"
@@ -127,6 +136,9 @@ url = "http://homelab.dunker-arctic.ts.net:9003"
 [https.services.grafana.loadBalancer]
 [[https.services.grafana.loadBalancer.servers]]
 url = "http://homelab.dunker-arctic.ts.net:9006"
+[https.services.homarr.loadBalancer]
+[[https.services.homarr.loadBalancer.servers]]
+url = "http://homelab.dunker-arctic.ts.net:7575"
 [https.services.registry.loadBalancer]
 [[https.services.registry.loadBalancer.servers]]
 url = "https://homelab.dunker-arctic.ts.net:5000"
