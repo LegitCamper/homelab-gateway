@@ -43,19 +43,6 @@
         mv traefik /bin/traefik
         rm traefik.tar.gz
 
-        # this is for after release of treafik v3.0
-        # git clone https://github.com/traefik/traefik.git
-        # cd traefik
-        # git pull
-        # # Generate UI static files
-        # make clean-webui generate-webui
-        # # required to merge non-code components into the final binary,
-        # # such as the web dashboard/UI
-        # go generate
-        # # Standard go build
-        # go build ./cmd/traefik
-        # ~/go/src/github.com/traefik/traefik
-
     # - name: Start unattended upgrades
       # service:
         # name: unattended-upgrades
@@ -67,7 +54,7 @@
       shell: |
         mkdir /etc/systemd/resolved.conf.d/
         echo "[Resolve]" > /etc/systemd/resolved.conf.d/adguardhome.conf
-        echo "DNS=127.0.0.1: >> /etc/systemd/resolved.conf.d/adguardhome.conf
+        echo "DNS=$(tailscale ip homelab | head -n 1)" >> /etc/systemd/resolved.conf.d/adguardhome.conf
         echo "DNSStubListener=no" >> /etc/systemd/resolved.conf.d/adguardhome.conf
 
         if [ ! -f /etc/resolv.conf.backup ]
