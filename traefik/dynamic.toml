@@ -154,11 +154,20 @@ rule = "HostSNI(`minecraft.sawyer.services`) || HostSNI(`mc.sawyer.services`)"
 service = "minecraft"
 [tcp.routers.to-minecraft.tls]
 passthrough = true
+[tcp.routers.to-dns]
+entryPoints = ["dns-tcp"]
+rule = "HostSNI(`dns.sawyer.services`)"
+service = "dns"
+[tcp.routers.to-dns.tls]
+passthrough = true
 
 [tcp.services]
 [tcp.services.minecraft.loadBalancer]
 [[tcp.services.minecraft.loadBalancer.servers]]
 address = "100.103.193.140:25565"
+[tcp.services.dns.loadBalancer]
+[[tcp.services.dns.loadBalancer.servers]]
+address = "100.103.193.140:53"
 
 [udp]
 [udp.routers]
@@ -167,8 +176,14 @@ entryPoints = ["minecraft-udp"]
 # UDP does not use rules?
 # rule = "HostSNI(`minecraft.sawyer.services`) || HostSNI(`mc.sawyer.services`)"
 service = "minecraft"
+[udp.routers.to-dns]
+entryPoints = ["dns-udp"]
+service = "dns"
 
 [udp.services]
 [udp.services.minecraft.loadBalancer]
 [[udp.services.minecraft.loadBalancer.servers]]
 address = "100.103.193.140:25565"
+[udp.services.dns.loadBalancer]
+[[udp.services.dns.loadBalancer.servers]]
+address = "100.103.193.140:53"
