@@ -52,15 +52,9 @@
 
     - name: remove used port 53 
       shell: |
-        mkdir /etc/systemd/resolved.conf.d/
-        echo "[Resolve]" > /etc/systemd/resolved.conf.d/adguardhome.conf
-        echo "DNS=$(tailscale ip homelab | head -n 1)" >> /etc/systemd/resolved.conf.d/adguardhome.conf
-        echo "DNSStubListener=no" >> /etc/systemd/resolved.conf.d/adguardhome.conf
-
-        if [ ! -f /etc/resolv.conf.backup ]
+        if [ $(cat /etc/systemd/resolved.conf.d/DigitalOcean.conf | wc -l) < 3 ]
         then
-          mv /etc/resolv.conf /etc/resolv.conf.backup
-          ln -s /run/systemd/resolve/resolv.conf /etc/resolv.conf
+          echo "DNSStubListener=no" >> /etc/systemd/resolved.conf.d/adguardhome.conf
         fi
 
         systemctl reload-or-restart systemd-resolved
