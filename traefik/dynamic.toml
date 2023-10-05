@@ -158,8 +158,6 @@ passthrough = true
 entryPoints = ["dns-tcp"]
 rule = "HostSNI(`dns.sawyer.services`)"
 service = "dns"
-[tcp.routers.to-dns.tls]
-passthrough = true
 
 [tcp.services]
 [tcp.services.minecraft.loadBalancer]
@@ -173,8 +171,6 @@ address = "100.103.193.140:53"
 [udp.routers]
 [udp.routers.to-minecraft]
 entryPoints = ["minecraft-udp"]
-# UDP does not use rules?
-# rule = "HostSNI(`minecraft.sawyer.services`) || HostSNI(`mc.sawyer.services`)"
 service = "minecraft"
 [udp.routers.to-dns]
 entryPoints = ["dns-udp"]

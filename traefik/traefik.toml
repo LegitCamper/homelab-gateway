@@ -19,6 +19,7 @@ address = ":443/udp"
 address = ":25565"
 [entryPoints.minecraft-udp]
 address = ":25565/udp"
+# DNS
 [entryPoints.dns-tcp]
 address = ":53"
 [entryPoints.dns-udp]

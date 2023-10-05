@@ -77,7 +77,7 @@
       service:
         name: ansible-pull
         enabled: true 
-        state: restarted
+        state: reloaded
         daemon_reload: yes
 
     - name: copy traefik service
@@ -87,5 +87,5 @@
       service:
         name: traefik
         enabled: true 
-        state: restarted
+        state: reloaded
         daemon_reload: yes
