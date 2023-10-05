@@ -18,9 +18,9 @@ service = "torrent"
 [http.routers.to-portainer]
 rule = "Host(`portainer.sawyer.services`)"
 service = "portainer"
-[http.routers.to-pihole-web]
-rule = "Host(`pihole-web.sawyer.services`)"
-service = "pihole-web"
+[http.routers.to-adguard]
+rule = "Host(`adguard.sawyer.services`)"
+service = "adguard"
 [http.routers.to-filebrowser]
 rule = "Host(`filebrowser.sawyer.services`) || Host(`files.sawyer.services`)"
 service = "filebrowser"
@@ -53,9 +53,9 @@ url = "http://homelab.dunker-arctic.ts.net:9092"
 [http.services.portainer.loadBalancer]
 [[http.services.portainer.loadBalancer.servers]]
 url = "http://homelab.dunker-arctic.ts.net:9000"
-[http.services.pihole-web.loadBalancer]
-[[http.services.pihole-web.loadBalancer.servers]]
-url = "http://homelab.dunker-arctic.ts.net:2001/admin"
+[http.services.adguard.loadBalancer]
+[[http.services.adguard.loadBalancer.servers]]
+url = "http://homelab.dunker-arctic.ts.net:2001"
 [http.services.filebrowser.loadBalancer]
 [[http.services.filebrowser.loadBalancer.servers]]
 url = "http://homelab.dunker-arctic.ts.net:9003"
@@ -92,9 +92,9 @@ service = "torrent"
 [https.routers.to-portainer]
 rule = "Host(`portainer.sawyer.services`)"
 service = "portainer"
-[https.routers.to-pihole-web]
-rule = "Host(`pihole-web.sawyer.services`)"
-service = "pihole-web"
+[https.routers.to-adguard]
+rule = "Host(`adguard.sawyer.services`)"
+service = "adguard"
 [https.routers.to-filebrowser]
 rule = "Host(`filebrowser.sawyer.services`) || Host(`files.sawyer.services`)"
 service = "filebrowser"
@@ -127,9 +127,9 @@ url = "https://homelab.dunker-arctic.ts.net:9092"
 [https.services.portainer.loadBalancer]
 [[https.services.portainer.loadBalancer.servers]]
 url = "https://homelab.dunker-arctic.ts.net:9443"
-[https.services.pihole-web.loadBalancer]
-[[https.services.pihole-web.loadBalancer.servers]]
-url = "http://homelab.dunker-arctic.ts.net:2001/admin"
+[https.services.adguard.loadBalancer]
+[[https.services.adguard.loadBalancer.servers]]
+url = "http://homelab.dunker-arctic.ts.net:2001"
 [https.services.filebrowser.loadBalancer]
 [[https.services.filebrowser.loadBalancer.servers]]
 url = "http://homelab.dunker-arctic.ts.net:9003"
