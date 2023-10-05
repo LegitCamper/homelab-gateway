@@ -29,11 +29,13 @@
       args:
         executable: /bin/bash
 
-    - name: get traefik configs
+    - name: get traefik configs and inserts homelab ip
       shell: |
         mkdir /etc/traefik
         cp -f /root/.ansible/pull/homelab-proxy/main/traefik/traefik.toml /etc/traefik/traefik.toml
         cp -f /root/.ansible/pull/homelab-proxy/main/traefik/dynamic.toml /etc/traefik/dynamic.toml
+        string=s/MYHOMELABIP/$(tailscale ip homelab | head -n 1)/g
+        sed -i $string /etc/traefik/dynamic.toml
 
     - name: install traefik
       shell: |

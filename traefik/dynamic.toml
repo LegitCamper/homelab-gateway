@@ -181,10 +181,10 @@ service = "dns"
 [tcp.services]
 [tcp.services.minecraft.loadBalancer]
 [[tcp.services.minecraft.loadBalancer.servers]]
-address = "100.103.193.140:25565"
+address = "MYHOMELABIP:25565"
 [tcp.services.dns.loadBalancer]
 [[tcp.services.dns.loadBalancer.servers]]
-address = "100.103.193.140:53"
+address = "MYHOMELABIP:53"
 
 [udp]
 [udp.routers]
@@ -198,7 +198,7 @@ service = "dns"
 [udp.services]
 [udp.services.minecraft.loadBalancer]
 [[udp.services.minecraft.loadBalancer.servers]]
-address = "100.103.193.140:25565"
+address = "MYHOMELABIP:25565"
 [udp.services.dns.loadBalancer]
 [[udp.services.dns.loadBalancer.servers]]
-address = "100.103.193.140:53"
+address = "MYHOMELABIP:53"
