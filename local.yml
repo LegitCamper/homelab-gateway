@@ -87,5 +87,12 @@
       service:
         name: traefik
         enabled: true 
-        state: reloaded
+        state: started
+        daemon_reload: yes
+
+    - name: Restart traefik and reload config
+      service:
+        name: traefik
+        enabled: true 
+        state: restarted
         daemon_reload: yes
