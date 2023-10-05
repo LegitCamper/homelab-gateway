@@ -50,14 +50,14 @@
         # state: started
         # daemon_reload: yes        
 
-    - name: remove used port 53 
-      shell: |
-        if [ $(cat /etc/systemd/resolved.conf.d/DigitalOcean.conf | wc -l) < 3 ]
-        then
-          echo "DNSStubListener=no" >> /etc/systemd/resolved.conf.d/adguardhome.conf
-        fi
+    - name: disable systemd-resolved
+      service:
+        name: systemd-resolved
+        enabled: false
+        state: stopped
 
-        systemctl reload-or-restart systemd-resolved
+    - name: change name server
+      shell: echo "nameserver 1.1.1.1" > /etc/resolv.conf
 
     - name: get webhooks
       shell: |
