@@ -37,7 +37,6 @@ insecureSkipVerify = true
 
 [experimental]
 http3 = true
-# [experimental.plugins]
-# [experimental.plugins.redirect2https]
-# version = "v0.0.7"
-# modulename = "github.com/setcy/redirect2https"
+[experimental.plugins.cache]
+modulename = "github.com/traefik/plugin-simplecache"
+version = "v0.2.1"

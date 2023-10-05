@@ -1,11 +1,11 @@
 [http]
+[http.middlewares]
+[http.middlewares.my-cache.plugin.cache]
+path = "/root/traefik_cache"
 [http.routers]
 [http.routers.to-traefik]
 rule = "Host(`traefik.sawyer.services`)"
 service = "api@internal"
-[http.routers.to-dashy]
-rule = "Host(`dashy.sawyer.services`)"
-service = "dashy"
 [http.routers.to-searxng]
 rule = "Host(`searxng.sawyer.services`) || Host(`search.sawyer.services`)"
 service = "searxng"
@@ -28,8 +28,14 @@ service = "filebrowser"
 rule = "Host(`grafana.sawyer.services`)"
 service = "grafana"
 [http.routers.to-homarr]
-rule = "Host(`homarr.sawyer.services`)"
+rule = "Host(`homarr.sawyer.services`) || Host(`dashy.sawyer.services`) || Host(`dashboard.sawyer.services`)"
 service = "homarr"
+[http.routers.to-calibre]
+rule = "Host(`calibre.sawyer.services`) || Host(`calibre-web.sawyer.services`)"
+service = "calibre"
+[http.routers.to-dash]
+rule = "Host(`dash.sawyer.services`)"
+service = "dash"
 [http.routers.to-registry]
 rule = "Host(`registry.sawyer.services`)"
 service = "registry"
@@ -38,9 +44,6 @@ rule = "Host(`github.sawyer.services`) || Host(`gh.sawyer.services`)"
 service = "github"
 
 [http.services]
-[http.services.dashy.loadBalancer]
-[[http.services.dashy.loadBalancer.servers]]
-url = "http://homelab.dunker-arctic.ts.net:10000"
 [http.services.searxng.loadBalancer]
 [[http.services.searxng.loadBalancer.servers]]
 url = "http://homelab.dunker-arctic.ts.net:9001"
@@ -52,7 +55,8 @@ url = "http://homelab.dunker-arctic.ts.net:32400"
 url = "http://homelab.dunker-arctic.ts.net:9092"
 [http.services.portainer.loadBalancer]
 [[http.services.portainer.loadBalancer.servers]]
-url = "http://homelab.dunker-arctic.ts.net:9000"
+# portainer only runs on https - so redirect
+url = "https://homelab.dunker-arctic.ts.net:9443"
 [http.services.adguard.loadBalancer]
 [[http.services.adguard.loadBalancer.servers]]
 url = "http://homelab.dunker-arctic.ts.net:2001"
@@ -65,6 +69,12 @@ url = "http://homelab.dunker-arctic.ts.net:9006"
 [http.services.homarr.loadBalancer]
 [[http.services.homarr.loadBalancer.servers]]
 url = "http://homelab.dunker-arctic.ts.net:7575"
+[http.services.calibre.loadBalancer]
+[[http.services.calibre.loadBalancer.servers]]
+url = "http://homelab.dunker-arctic.ts.net:8083"
+[http.services.dash.loadBalancer]
+[[http.services.dash.loadBalancer.servers]]
+url = "http://homelab.dunker-arctic.ts.net:9007"
 [http.services.registry.loadBalancer]
 [[http.services.registry.loadBalancer.servers]]
 url = "http://homelab.dunker-arctic.ts.net:5000"
@@ -73,13 +83,13 @@ url = "http://homelab.dunker-arctic.ts.net:5000"
 url = "https://github.com/Legitcamper:443"
 
 [https]
+[https.middlewares]
+[https.middlewares.my-cache.plugin.cache]
+path = "/root/traefik_cache"
 [https.routers]
 [https.routers.to-traefik]
 rule = "Host(`traefik.sawyer.services`)"
 service = "api@internal"
-[https.routers.to-dashy]
-rule = "Host(`dashy.sawyer.services`)"
-service = "dashy"
 [https.routers.to-search]
 rule = "Host(`searxng.sawyer.services`) || Host(`search.sawyer.services`)"
 service = "searxng"
@@ -102,8 +112,14 @@ service = "filebrowser"
 rule = "Host(`grafana.sawyer.services`)"
 service = "grafana"
 [https.routers.to-homarr]
-rule = "Host(`homarr.sawyer.services`)"
+rule = "Host(`homarr.sawyer.services`) || Host(`dashy.sawyer.services`) || Host(`dashboard.sawyer.services`)"
 service = "homarr"
+[https.routers.to-calibre]
+rule = "Host(`calibre.sawyer.services`) || Host(`calibre-web.sawyer.services`)"
+service = "calibre"
+[https.routers.to-dash]
+rule = "Host(`dash.sawyer.services`)"
+service = "dash"
 [https.routers.to-registry]
 rule = "Host(`registry.sawyer.services`)"
 service = "registry"
@@ -112,9 +128,6 @@ rule = "Host(`gh.sawyer.services`)"
 service = "github"
 
 [https.services]
-[https.services.dashy.loadBalancer]
-[[https.services.dashy.loadBalancer.servers]]
-url = "https://homelab.dunker-arctic.ts.net:10000"
 [https.services.searxng.loadBalancer]
 [[https.services.searxng.loadBalancer.servers]]
 url = "https://homelab.dunker-arctic.ts.net:9001"
@@ -129,16 +142,22 @@ url = "https://homelab.dunker-arctic.ts.net:9092"
 url = "https://homelab.dunker-arctic.ts.net:9443"
 [https.services.adguard.loadBalancer]
 [[https.services.adguard.loadBalancer.servers]]
-url = "http://homelab.dunker-arctic.ts.net:2001"
+url = "https://homelab.dunker-arctic.ts.net:2001"
 [https.services.filebrowser.loadBalancer]
 [[https.services.filebrowser.loadBalancer.servers]]
-url = "http://homelab.dunker-arctic.ts.net:9003"
+url = "https://homelab.dunker-arctic.ts.net:9003"
 [https.services.grafana.loadBalancer]
 [[https.services.grafana.loadBalancer.servers]]
-url = "http://homelab.dunker-arctic.ts.net:9006"
+url = "https://homelab.dunker-arctic.ts.net:9006"
 [https.services.homarr.loadBalancer]
 [[https.services.homarr.loadBalancer.servers]]
-url = "http://homelab.dunker-arctic.ts.net:7575"
+url = "https://homelab.dunker-arctic.ts.net:7575"
+[https.services.calibre.loadBalancer]
+[[https.services.calibre.loadBalancer.servers]]
+url = "https://homelab.dunker-arctic.ts.net:8083"
+[https.services.dash.loadBalancer]
+[[https.services.dash.loadBalancer.servers]]
+url = "https://homelab.dunker-arctic.ts.net:9007"
 [https.services.registry.loadBalancer]
 [[https.services.registry.loadBalancer.servers]]
 url = "https://homelab.dunker-arctic.ts.net:5000"
