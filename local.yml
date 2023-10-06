@@ -32,8 +32,8 @@
     - name: get traefik configs and inserts homelab ip
       shell: |
         mkdir /etc/traefik
-        cp -f /root/.ansible/pull/homelab-proxy/main/traefik/traefik.toml /etc/traefik/traefik.toml
-        cp -f /root/.ansible/pull/homelab-proxy/main/traefik/dynamic.toml /etc/traefik/dynamic.toml
+        cp -f /root/.ansible/pull/homelab-proxy/traefik/traefik.toml /etc/traefik/traefik.toml
+        cp -f /root/.ansible/pull/homelab-proxy/traefik/dynamic.toml /etc/traefik/dynamic.toml
         string=s/MYHOMELABIP/$(tailscale ip homelab | head -n 1)/g
         sed -i $string /etc/traefik/dynamic.toml
 
@@ -63,7 +63,7 @@
 
     - name: get webhooks
       shell: |
-        cp -f /root/.ansible/pull/homelab-proxy/main/hooks.json /root/hooks.json
+        cp -f /root/.ansible/pull/homelab-proxy/hooks.json /root/hooks.json
         string=s/mysecret/$(</root/webhooksecret.txt)/g
         sed -i $string /root/hooks.json
       args:
@@ -71,8 +71,8 @@
 
     - name: copy ansible-pull service
       shell: |
-        cp -f /root/.ansible/pull/homelab-proxy/main/ansible-pull.service /etc/systemd/system/ansible-pull.service
-        cp -f /root/.ansible/pull/homelab-proxy/main/ansible-pull.sh /root/ansible-pull.sh
+        cp -f /root/.ansible/pull/homelab-proxy/ansible-pull.service /etc/systemd/system/ansible-pull.service
+        cp -f /root/.ansible/pull/homelab-proxy/ansible-pull.sh /root/ansible-pull.sh
         chmod +x /root/ansible-pull.sh
 
     - name: Start ansible-pull service, if not started
@@ -83,7 +83,7 @@
         daemon_reload: yes
 
     - name: copy traefik service
-      shell: cp -f /root/.ansible/pull/homelab-proxy/main/traefik.service /etc/systemd/system/traefik.service
+      shell: cp -f /root/.ansible/pull/homelab-proxy/traefik.service /etc/systemd/system/traefik.service
 
     - name: Start traefik service, if not started
       service:
