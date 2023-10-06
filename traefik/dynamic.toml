@@ -46,38 +46,38 @@ service = "github"
 [http.services]
 [http.services.searxng.loadBalancer]
 [[http.services.searxng.loadBalancer.servers]]
-url = "http://homelab.dunker-arctic.ts.net:9001"
+url = "http://MYHOMELABIP:9001"
 [http.services.plex.loadBalancer]
 [[http.services.plex.loadBalancer.servers]]
-url = "http://homelab.dunker-arctic.ts.net:32400"
+url = "http://MYHOMELABIP:32400"
 [http.services.torrent.loadBalancer]
 [[http.services.torrent.loadBalancer.servers]]
-url = "http://homelab.dunker-arctic.ts.net:9092"
+url = "http://MYHOMELABIP:9092"
 [http.services.portainer.loadBalancer]
 [[http.services.portainer.loadBalancer.servers]]
 # portainer only runs on https - so redirect
-url = "https://homelab.dunker-arctic.ts.net:9443"
+url = "https://MYHOMELABIP:9443"
 [http.services.adguard.loadBalancer]
 [[http.services.adguard.loadBalancer.servers]]
-url = "http://homelab.dunker-arctic.ts.net:2001"
+url = "http://MYHOMELABIP:2001"
 [http.services.filebrowser.loadBalancer]
 [[http.services.filebrowser.loadBalancer.servers]]
-url = "http://homelab.dunker-arctic.ts.net:9003"
+url = "http://MYHOMELABIP:9003"
 [http.services.grafana.loadBalancer]
 [[http.services.grafana.loadBalancer.servers]]
-url = "http://homelab.dunker-arctic.ts.net:9006"
+url = "http://MYHOMELABIP:9006"
 [http.services.homarr.loadBalancer]
 [[http.services.homarr.loadBalancer.servers]]
-url = "http://homelab.dunker-arctic.ts.net:7575"
+url = "http://MYHOMELABIP:7575"
 [http.services.calibre.loadBalancer]
 [[http.services.calibre.loadBalancer.servers]]
-url = "http://homelab.dunker-arctic.ts.net:8083"
+url = "http://MYHOMELABIP:8083"
 [http.services.dash.loadBalancer]
 [[http.services.dash.loadBalancer.servers]]
-url = "http://homelab.dunker-arctic.ts.net:9007"
+url = "http://MYHOMELABIP:9007"
 [http.services.registry.loadBalancer]
 [[http.services.registry.loadBalancer.servers]]
-url = "http://homelab.dunker-arctic.ts.net:5000"
+url = "http://MYHOMELABIP:5000"
 [http.services.github.loadBalancer]
 [[http.services.github.loadBalancer.servers]]
 url = "https://github.com/Legitcamper:443"
@@ -130,37 +130,37 @@ service = "github"
 [https.services]
 [https.services.searxng.loadBalancer]
 [[https.services.searxng.loadBalancer.servers]]
-url = "https://homelab.dunker-arctic.ts.net:9001"
+url = "https://MYHOMELABIP:9001"
 [https.services.plex.loadBalancer]
 [[https.services.plex.loadBalancer.servers]]
-url = "https://homelab.dunker-arctic.ts.net:32400"
+url = "https://MYHOMELABIP:32400"
 [https.services.torrent.loadBalancer]
 [[https.services.torrent.loadBalancer.servers]]
-url = "https://homelab.dunker-arctic.ts.net:9092"
+url = "https://MYHOMELABIP:9092"
 [https.services.portainer.loadBalancer]
 [[https.services.portainer.loadBalancer.servers]]
-url = "https://homelab.dunker-arctic.ts.net:9443"
+url = "https://MYHOMELABIP:9443"
 [https.services.adguard.loadBalancer]
 [[https.services.adguard.loadBalancer.servers]]
-url = "https://homelab.dunker-arctic.ts.net:2001"
+url = "https://MYHOMELABIP:2001"
 [https.services.filebrowser.loadBalancer]
 [[https.services.filebrowser.loadBalancer.servers]]
-url = "https://homelab.dunker-arctic.ts.net:9003"
+url = "https://MYHOMELABIP:9003"
 [https.services.grafana.loadBalancer]
 [[https.services.grafana.loadBalancer.servers]]
-url = "https://homelab.dunker-arctic.ts.net:9006"
+url = "https://MYHOMELABIP:9006"
 [https.services.homarr.loadBalancer]
 [[https.services.homarr.loadBalancer.servers]]
-url = "https://homelab.dunker-arctic.ts.net:7575"
+url = "https://MYHOMELABIP:7575"
 [https.services.calibre.loadBalancer]
 [[https.services.calibre.loadBalancer.servers]]
-url = "https://homelab.dunker-arctic.ts.net:8083"
+url = "https://MYHOMELABIP:8083"
 [https.services.dash.loadBalancer]
 [[https.services.dash.loadBalancer.servers]]
-url = "https://homelab.dunker-arctic.ts.net:9007"
+url = "https://MYHOMELABIP:9007"
 [https.services.registry.loadBalancer]
 [[https.services.registry.loadBalancer.servers]]
-url = "https://homelab.dunker-arctic.ts.net:5000"
+url = "https://MYHOMELABIP:5000"
 [https.services.github.loadBalancer]
 [[https.services.github.loadBalancer.servers]]
 url = "https://github.com/Legitcamper"
