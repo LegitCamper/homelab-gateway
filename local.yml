@@ -98,3 +98,13 @@
         enabled: true 
         state: restarted
         daemon_reload: yes
+
+    - name: configure TCP Routes with iptables
+      shell: |
+        string=s/mysecret/$(</root/webhooksecret.txt)/g
+        # iptables -t nat -A PREROUTING -p tcp --dport 2222 -j DNAT --to-destination 1.2.3.4:8888
+        iptables -t nat -A PREROUTING -p tcp --dport 25565 -j DNAT --to-destination $string:25565        
+        iptables -t nat -A PREROUTING -p udp --dport 25565 -j DNAT --to-destination $string:25565        
+        iptables -t nat -A PREROUTING -p tcp --dport 53 -j DNAT --to-destination $string:53
+        iptables -t nat -A PREROUTING -p udp --dport 53 -j DNAT --to-destination $string:53
+

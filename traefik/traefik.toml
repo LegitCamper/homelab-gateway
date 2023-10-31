@@ -14,16 +14,6 @@ address = ":443"
 [entryPoints.https-udp]
 address = ":443/udp"
 # certResolver = "myresolver"
-# MINECRAFT
-[entryPoints.minecraft-tcp]
-address = ":25565"
-[entryPoints.minecraft-udp]
-address = ":25565/udp"
-# DNS
-[entryPoints.dns-tcp]
-address = ":53"
-[entryPoints.dns-udp]
-address = ":53/udp"
 
 [providers]
 [providers.file]
