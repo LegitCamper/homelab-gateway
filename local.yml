@@ -100,17 +100,17 @@
       shell: |
         echo 1 > /proc/sys/net/ipv4/ip_forward
         ip=$(tailscale ip homelab | head -n 1)
-        myIp=$(ip addr show eth0 | grep "inet\b" | awk '{print $2}' | cut -d/ -f1)
+        myIp=$(tailscale ip | head -n 1)
 
         # iptables -t nat -A PREROUTING -p tcp --dport 2222 -j DNAT --to-destination 1.2.3.4:8888
         
-        iptables -t nat -A PREROUTING -p tcp --dport 25565 -j DNAT --to-destination $ip:25565        
+        iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 25565 -j DNAT --to-destination $ip:25565        
         iptables -t nat -A POSTROUTING -p tcp -d $ip --dport 25565 -j SNAT --to-source $myIp 
-        iptables -t nat -A PREROUTING -p udp --dport 25565 -j DNAT --to-destination $ip:25565        
+        iptables -t nat -A PREROUTING -i eth0 -p udp --dport 25565 -j DNAT --to-destination $ip:25565        
         iptables -t nat -A POSTROUTING -p udp -d $ip --dport 25565 -j SNAT --to-source $myIp 
 
-        iptables -t nat -A PREROUTING -p tcp --dport 53 -j DNAT --to-destination $ip:53
+        iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 53 -j DNAT --to-destination $ip:53
         iptables -t nat -A POSTROUTING -p tcp -d $ip --dport 53 -j SNAT --to-source $myIp 
-        iptables -t nat -A PREROUTING -p udp --dport 53 -j DNAT --to-destination $ip:53
+        iptables -t nat -A PREROUTING -i eth0 -p udp --dport 53 -j DNAT --to-destination $ip:53
         iptables -t nat -A POSTROUTING -p udp -d $ip --dport 53 -j SNAT --to-source $myIp 
 
