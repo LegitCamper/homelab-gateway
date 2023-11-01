@@ -14,10 +14,7 @@
         state: latest
       loop:
         - webhook
-        # - golang
-        # - docker.io
-        # - apt-config-auto-update
-        # - unattended-upgrades
+        - iptables
 
     - name: installs, logs in, and setups tailscale
       shell: |
