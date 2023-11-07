@@ -96,7 +96,7 @@
         state: restarted
         daemon_reload: yes
 
-    - name: configure TCP Routes with iptables
+    - name: configure Routes with iptables
       shell: |
         echo 1 > /proc/sys/net/ipv4/ip_forward
         homelabip=$(tailscale ip homelab | head -n 1)
@@ -106,18 +106,20 @@
         # iptables -t nat -A POSTROUTING -p tcp -d 1.2.3.4 --dport 8888 -j SNAT --to-source 2.3.4.5
 
         # Minecraft port
-        iptables -t nat -A PREROUTING -i eth0 -p all --dport 25565 -j DNAT --to-destination $homelab:25565
+        #iptables -t nat -A PREROUTING -i eth0 -p all --dport 25565 -j DNAT --to-destination $homelabip:25565
         # Traefik ui port
-        iptables -t nat -A PREROUTING -i eth0 -p all --dport 8080 -j DNAT --to-destination $homelab:8080
+        #iptables -t nat -A PREROUTING -i eth0 -p all --dport 8080 -j DNAT --to-destination $homelabip:8080
         # DNS port
-        iptables -t nat -A PREROUTING -i eth0 -p all --dport 53 -j DNAT --to-destination $homelab:53
+        #iptables -t nat -A PREROUTING -i eth0 -p all --dport 53 -j DNAT --to-destination $homelabip:53
         # HTTP port
-        iptables -t nat -A PREROUTING -i eth0 -p all --dport 80 -j DNAT --to-destination $homelab:80
+        #iptables -t nat -A PREROUTING -i eth0 -p all --dport 80 -j DNAT --to-destination $homelabip:80
         # HTTPS port
-        iptables -t nat -A PREROUTING -i eth0 -p all --dport 443 -j DNAT --to-destination $homelab:443
+        #iptables -t nat -A PREROUTING -i eth0 -p all --dport 443 -j DNAT --to-destination $homelabip:443
+        # All ports
+        iptables -t nat -A PREROUTING -i eth0 -p all -j DNAT --to-destination $homelabip
 
         # Masks homelab and makes server act as gateway
-        iptables -t nat -A POSTROUTING -s "$homelab" -j MASQUERADE
+        iptables -t nat -A POSTROUTING -s "$homelabip" -j MASQUERADE
 
 
 
