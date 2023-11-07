@@ -99,16 +99,19 @@
     - name: configure TCP Routes with iptables
       shell: |
         echo 1 > /proc/sys/net/ipv4/ip_forward
-        ip=$(tailscale ip homelab | head -n 1)
-        myIp=$(tailscale ip | head -n 1)
+        homelabip=$(tailscale ip homelab | head -n 1)
+        serverip=$(tailscale ip | head -n 1)
 
         # iptables -t nat -A PREROUTING -p tcp --dport 2222 -j DNAT --to-destination 1.2.3.4:8888
+        # iptables -t nat -A POSTROUTING -p tcp -d 1.2.3.4 --dport 8888 -j SNAT --to-source 2.3.4.5
 
         # Minecraft port
-        iptables -t nat -A PREROUTING -i eth0 -p all --dport 25565 -j DNAT --to-destination $ip:25565        
-        iptables -t nat -A POSTROUTING -p all -d $ip --dport 25565 -j SNAT --to-source $myIp 
-
+        iptables -t nat -A PREROUTING -i eth0 -p all --dport 25565 -j DNAT --to-destination $homelab:25565
         # DNS port
-        iptables -t nat -A PREROUTING -i eth0 -p all --dport 53 -j DNAT --to-destination $ip:53
-        iptables -t nat -A POSTROUTING -p all -d $ip --dport 53 -j SNAT --to-source $myIp 
+        iptables -t nat -A PREROUTING -i eth0 -p all --dport 53 -j DNAT --to-destination $homelab:53
+
+        # Masks homelab and makes server act as gateway
+        iptables -t nat -A POSTROUTING -s "$homelab" -j MASQUERADE
+
+
 
