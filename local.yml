@@ -26,22 +26,6 @@
       args:
         executable: /bin/bash
 
-    - name: get traefik configs and inserts homelab ip
-      shell: |
-        mkdir /etc/traefik
-        cp -f /root/.ansible/pull/homelab-proxy/traefik/traefik.toml /etc/traefik/traefik.toml
-        cp -f /root/.ansible/pull/homelab-proxy/traefik/dynamic.toml /etc/traefik/dynamic.toml
-        string=s/MYHOMELABIP/$(tailscale ip homelab | head -n 1)/g
-        sed -i $string /etc/traefik/dynamic.toml
-
-    - name: install traefik
-      shell: |
-        cd /tmp
-        wget https://github.com/traefik/traefik/releases/download/v2.9.6/traefik_v2.9.6_linux_amd64.tar.gz -O traefik.tar.gz
-        tar xzvf traefik.tar.gz
-        mv traefik /bin/traefik
-        rm traefik.tar.gz
-
     # - name: Start unattended upgrades
       # service:
         # name: unattended-upgrades
@@ -77,23 +61,6 @@
         name: ansible-pull
         enabled: true 
         state: started
-        daemon_reload: yes
-
-    - name: copy traefik service
-      shell: cp -f /root/.ansible/pull/homelab-proxy/traefik.service /etc/systemd/system/traefik.service
-
-    - name: Start traefik service, if not started
-      service:
-        name: traefik
-        enabled: false
-        state: started
-        daemon_reload: yes
-
-    - name: Restart traefik and reload config
-      service:
-        name: traefik
-        enabled: true 
-        state: restarted
         daemon_reload: yes
 
     - name: configure Routes with iptables
