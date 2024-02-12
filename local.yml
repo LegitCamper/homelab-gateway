@@ -88,6 +88,9 @@
         # HTTPS port
         iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 443 -j DNAT --to-destination $homelabip:443
         iptables -t nat -A PREROUTING -i eth0 -p udp --dport 443 -j DNAT --to-destination $homelabip:443
+        # DNS-over-TLS & DNS-over-QUIC port
+        iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 853 -j DNAT --to-destination $homelabip:853
+        iptables -t nat -A PREROUTING -i eth0 -p udp --dport 853 -j DNAT --to-destination $homelabip:853
 
         # Does not use server as gateway (better speeds)
         # iptables -t nat -A POSTROUTING -d $homelabip -j SNAT --to-source $serverip
