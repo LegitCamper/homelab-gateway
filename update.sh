@@ -19,7 +19,7 @@ if [ ! -f /root/tailscaleapikey.txt ]; then
   exit 0
 fi
 tailscale login --authkey=$(</root/tailscaleapikey.txt)
-tailscale up --hostname=homelab-proxy
+tailscale up --hostname=homelab-proxy --ssh
 
 # get the ip of the homelab server
 homelabip=$(tailscale ip homelab | head -n 1)
