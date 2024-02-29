@@ -1,4 +1,4 @@
-# My homelab proxy script
+# My homelab gateway script
 
 ## Motives 
 I have seen quite a few ways to deal with homelab issues like port forwarding and changing resedential ip's. Most of the solutions I found were either hard to configure or limited the types of data I could forward.
