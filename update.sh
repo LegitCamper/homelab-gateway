@@ -19,7 +19,7 @@ if [ ! -f /root/tailscaleapikey.txt ]; then
   exit 0
 fi
 tailscale login --authkey=$(</root/tailscaleapikey.txt)
-tailscale up --hostname=homelab-proxy --ssh
+tailscale up --hostname=homelab-gateway --ssh
 
 # get the ip of the homelab server
 homelabip=$(tailscale ip homelab | head -n 1)
@@ -29,10 +29,7 @@ serverip=$(tailscale ip | head -n 1)
 iptables -t nat -A PREROUTING -i eth0 -j DNAT --to-destination $homelabip
 
 # Masks homelab and makes server act as gateway
-# iptables -t nat -A POSTROUTING -j MASQUERADE
-# iptables -t nat -A POSTROUTING -d "$homelabip" -o eth0 -j MASQUERADE
-
-# Does not use server as gateway (just as entrypoint - better speeds, but less safety)
-iptables -t nat -A POSTROUTING -d $homelabip -j SNAT --to-source $serverip
+iptables -t nat -A POSTROUTING -j MASQUERADE
+iptables -t nat -A POSTROUTING -d "$homelabip" -o eth0 -j MASQUERADE
 
 echo "Done with setup - Test connection"
